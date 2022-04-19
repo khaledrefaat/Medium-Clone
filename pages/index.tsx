@@ -1,10 +1,22 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useState } from 'react';
+import Modal from '../components/modal/Modal';
 import PostList from '../components/post/PostList';
 import TagsMenu from '../components/Ui/TagsMenu';
 
 const Home: NextPage = () => {
+  const [isModalVisible, setIsModalVisible] = useState(true);
+
+  function showModal() {
+    setIsModalVisible(true);
+  }
+
+  function hideModal() {
+    setIsModalVisible(false);
+  }
+
   return (
     <>
       <Head>
@@ -40,6 +52,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </section>
+      {isModalVisible && <Modal hideModal={hideModal} />}
     </>
   );
 };
