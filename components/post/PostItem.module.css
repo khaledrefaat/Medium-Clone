@@ -1,0 +1,9 @@
+.post {
+    width: 100%;
+}
+
+.post img {
+    object-fit: cover;
+    width: 100%;
+    background-position: right;
+}
