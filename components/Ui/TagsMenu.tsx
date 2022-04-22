@@ -9,7 +9,7 @@ const TagsMenu = () => {
       console.log('working');
       window.addEventListener('scroll', () => {
         const offset = window.scrollY;
-        if (offset > 500) setIsScrolling(true);
+        if (offset > 850) setIsScrolling(true);
         else setIsScrolling(false);
       });
     }, 1000);
