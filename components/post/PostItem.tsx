@@ -3,7 +3,11 @@ import Link from 'next/link';
 import React from 'react';
 import classes from './PostItem.module.css';
 
-const PostItem: React.FC = () => {
+interface PostItemProps {
+  onBookmark: () => void;
+}
+
+const PostItem: React.FC<PostItemProps> = ({ onBookmark }) => {
   return (
     <li className="my-10 flex items-center">
       <div>
@@ -19,7 +23,12 @@ const PostItem: React.FC = () => {
           </span>
         </div>
         <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1">
-          Telegram Chronicles: Donbas and its War (a.k.a. “the last 8 years”)
+          <Link href="/tag/Telegram-Chronicles-Donbas-and-its-War">
+            <a>
+              Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+              years”)
+            </a>
+          </Link>
         </h3>
         <p className="hidden sm:block text-gray-600 text-sm md:text-base">
           In the last couple of weeks, Russia withdrew its forces from around
@@ -37,7 +46,7 @@ const PostItem: React.FC = () => {
               Programming
             </a>
           </Link>
-          <span className="ml-auto cursor-pointer">
+          <span className="ml-auto cursor-pointer" onClick={onBookmark}>
             <Image src="/icons/add-bookmark.svg" height={30} width={30} />
           </span>
         </div>

@@ -1,13 +1,18 @@
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
-import Modal from '../components/modal/Modal';
+import AuthModal from '../components/modal/AuthModal';
 import PostList from '../components/post/PostList';
 import TagsMenu from '../components/Ui/TagsMenu';
+import { Post } from '../typings';
 
-const Home: NextPage = () => {
-  const [isModalVisible, setIsModalVisible] = useState(true);
+interface HomeProps {
+  posts: Post[];
+}
+
+const Home: NextPage<HomeProps> = ({ posts }) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   function showModal() {
     setIsModalVisible(true);
@@ -42,19 +47,37 @@ const Home: NextPage = () => {
           </div>
         </div>
       </section>
-      <section>
-        <div className="container flex flex-col lg:flex-row-reverse my-10 border-t border-black">
+      <section className="border-t border-black">
+        <div className="container flex flex-col lg:flex-row-reverse my-10">
           <div className="w-full lg:w-1/3 mt-5">
             <TagsMenu />
           </div>
           <div className="px-1 lg:px-0 w-full lg:w-2/3">
-            <PostList />
+            <PostList onBookmark={showModal} />
           </div>
         </div>
       </section>
-      {isModalVisible && <Modal hideModal={hideModal} />}
+      {isModalVisible && <AuthModal signIn hideModal={hideModal} />}
     </>
   );
 };
 
 export default Home;
+
+// export const getStaticProps: GetStaticProps = async () => {
+//   const query = `*[_type == 'post'] {
+//     _id,
+//     title,
+//     author -> {name, image},
+//     description,
+//     body,
+//     mainImage,
+//     slug
+//   }`;
+
+//   const posts = await sanityClient.fetch(query);
+
+//   return {
+//     props: { posts },
+//   };
+// };
