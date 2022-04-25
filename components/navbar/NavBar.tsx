@@ -1,10 +1,9 @@
-declare module '*.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import AuthModal from '../modal/AuthModal';
 
-const Header = () => {
+const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
@@ -104,4 +103,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NavBar;

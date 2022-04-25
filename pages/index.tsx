@@ -12,8 +12,12 @@ interface HomeProps {
   posts: Post[];
 }
 
+// //////////////////////////////////////////////////////////////////////////////////////
+// remember always to change the post favicon to the author photo (look at medium post favicon)
+
 const Home: NextPage<HomeProps> = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
 
   function showModal() {
     setIsModalVisible(true);
@@ -21,6 +25,16 @@ const Home: NextPage<HomeProps> = () => {
 
   function hideModal() {
     setIsModalVisible(false);
+  }
+
+  function showSignInModal() {
+    setShowSignIn(true);
+    showModal();
+  }
+
+  function showSignUpModal() {
+    setShowSignIn(false);
+    showModal();
   }
 
   return (
@@ -40,7 +54,10 @@ const Home: NextPage<HomeProps> = () => {
             <h3 className="text-xl max-w-sm font-medium mb-7 mx-auto md:mx-0">
               Discover stories, and expertise from writers on any topic
             </h3>
-            <button className="bg-black rounded-full px-10 py-2 text-white text-xl">
+            <button
+              onClick={showSignUpModal}
+              className="bg-black rounded-full px-10 py-2 text-white text-xl"
+            >
               Start reading
             </button>
           </div>
@@ -54,9 +71,9 @@ const Home: NextPage<HomeProps> = () => {
         <div className="container flex flex-col">
           <div className="mb-5 flex">
             <div className="border border-black rounded-full flex items-center">
-              <Image src="/icons/trending.svg" height="12" width="20" />
+              <Image src="/icons/trending.svg" height="12" width="22" />
             </div>
-            <h3 className="ml-3 font-bold uppercase text-gray-800">
+            <h3 className="ml-2 font-bold uppercase text-gray-800">
               trending on medium
             </h3>
           </div>
@@ -78,17 +95,17 @@ const Home: NextPage<HomeProps> = () => {
           </div>
           <div className="px-1 lg:px-0 w-full lg:w-2/3">
             <ul className="w-full flex flex-col">
-              <PostItem onBookmark={showModal} />
-              <PostItem onBookmark={showModal} />
-              <PostItem onBookmark={showModal} />
-              <PostItem onBookmark={showModal} />
-              <PostItem onBookmark={showModal} />
-              <PostItem onBookmark={showModal} />
+              <PostItem onBookmark={showSignInModal} />
+              <PostItem onBookmark={showSignInModal} />
+              <PostItem onBookmark={showSignInModal} />
+              <PostItem onBookmark={showSignInModal} />
             </ul>
           </div>
         </div>
       </section>
-      {isModalVisible && <AuthModal signIn hideModal={hideModal} />}
+      {isModalVisible && (
+        <AuthModal signIn={showSignIn} hideModal={hideModal} />
+      )}
     </>
   );
 };
