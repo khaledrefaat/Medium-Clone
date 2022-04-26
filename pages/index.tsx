@@ -67,7 +67,7 @@ const Home: NextPage<HomeProps> = () => {
         </div>
       </section>
 
-      <section className="border-t border-black py-10">
+      <section className="border-t border-black py-10 px-5 sm:px-0">
         <div className="container flex flex-col">
           <div className="mb-5 flex">
             <div className="border border-black rounded-full flex items-center">

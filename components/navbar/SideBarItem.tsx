@@ -9,7 +9,7 @@ interface SideBarItemProps {
 
 const SideBarItem: React.FC<SideBarItemProps> = ({ href, src, className }) => {
   return (
-    <li className={className}>
+    <li className={`${className}`}>
       <Link href={href}>
         <a>
           <Image src={src} height="25" width="25" />

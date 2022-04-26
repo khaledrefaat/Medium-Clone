@@ -5,7 +5,7 @@ const UserMenuItem: React.FC<{ content: string }> = ({ content }) => (
 );
 const UserMenu = () => {
   return (
-    <div className="absolute bottom-16 z-30 left-0 bg-white p-5 pr-16 w-max shadow-lg rounded-md">
+    <div className="absolute hidden lg:block bottom-16 z-30 left-0 bg-white p-5 pr-16 w-max shadow-lg rounded-md">
       <ul>
         <UserMenuItem content="Medium Partner Program" />
         <UserMenuItem content="Gift a membership" />
