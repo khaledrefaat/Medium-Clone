@@ -4,13 +4,16 @@ import Header from '../navbar/Header';
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const hideMenuRef: any = useRef<any>();
 
+  const handelMenu = () => {
+    if (typeof hideMenuRef.current === 'function') {
+      hideMenuRef.current();
+    }
+  };
+
   return (
     <div className="lg:flex lg:h-full lg:w-full">
       <Header hideMenuRef={hideMenuRef} />
-      <main
-        onClick={() => hideMenuRef.current()}
-        className="overflow-x-hidden lg:flex-1"
-      >
+      <main onClick={handelMenu} className="overflow-x-hidden lg:flex-1">
         {children}
       </main>
     </div>

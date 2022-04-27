@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next';
+import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -11,9 +11,6 @@ import { Post } from '../typings';
 interface HomeProps {
   posts: Post[];
 }
-
-// //////////////////////////////////////////////////////////////////////////////////////
-// remember always to change the post favicon to the author photo (look at medium post favicon)
 
 const Home: NextPage<HomeProps> = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -111,21 +108,3 @@ const Home: NextPage<HomeProps> = () => {
 };
 
 export default Home;
-
-// export const getStaticProps: GetStaticProps = async () => {
-//   const query = `*[_type == 'post'] {
-//     _id,
-//     title,
-//     author -> {name, image},
-//     description,
-//     body,
-//     mainImage,
-//     slug
-//   }`;
-
-//   const posts = await sanityClient.fetch(query);
-
-//   return {
-//     props: { posts },
-//   };
-// };

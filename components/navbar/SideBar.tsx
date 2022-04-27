@@ -21,7 +21,7 @@ const SideBar: React.FC<{ hideMenuRef: any }> = ({ hideMenuRef }) => {
         onClick={hideMenu}
       >
         <div className="flex  justify-around items-center sticky pt-3 shadow-lg shadow-black lg:shadow-none lg:h-screen lg:top-0 lg:flex-col ">
-          <div className="hidden lg:block lg:mt-8">
+          <div className="hidden lg:block">
             <Link href="/">
               <a>
                 <Image
@@ -43,21 +43,26 @@ const SideBar: React.FC<{ hideMenuRef: any }> = ({ hideMenuRef }) => {
               <SideBarItem
                 href="/notification"
                 src="/icons/notification-outline.svg"
-                className="lg:mx-0 lg:my-8 mr-5 sm:mr-10 lg:mr-0"
+                className="hidden lg:block lg:mx-0 lg:my-5 mr-5 sm:mr-10 lg:mr-0"
+              />
+              <SideBarItem
+                href="/search"
+                src="/icons/search.svg"
+                className="lg:hidden"
               />
               <SideBarItem
                 href="/bookmark"
                 src="/icons/bookmark-outline.svg"
-                className="lg:mx-0 lg:my-8 mr-5 sm:mr-10 lg:mr-0"
+                className="lg:mx-0 lg:mt-5 mr-5 sm:mr-10 lg:mr-0"
               />
-              <li className="hidden lg:block border-b-2 border-gray-300 w-full my-10 " />
+              <li className="hidden lg:block border-b-2 border-gray-300 w-full my-8" />
               <SideBarItem
                 href="/post/new"
                 src="/icons/pencil-outline.svg"
                 className="hidden lg:block"
               />
               <li
-                className="lg:hidden lg:mx-auto lg:mb-8 cursor-pointer relative"
+                className="lg:hidden lg:mx-auto cursor-pointer relative"
                 onClick={e => {
                   setIsMenuVisible(isMenuVisible => !isMenuVisible);
                   e.stopPropagation();
@@ -73,7 +78,7 @@ const SideBar: React.FC<{ hideMenuRef: any }> = ({ hideMenuRef }) => {
             </ul>
           </nav>
           <div
-            className="hidden lg:block lg:mx-auto lg:mb-8 cursor-pointer relative"
+            className="hidden lg:block lg:mx-auto cursor-pointer relative"
             onClick={e => {
               setIsMenuVisible(isMenuVisible => !isMenuVisible);
               e.stopPropagation();
@@ -89,7 +94,7 @@ const SideBar: React.FC<{ hideMenuRef: any }> = ({ hideMenuRef }) => {
           </div>
         </div>
       </div>
-      {isMenuVisible && <MobileUserMenu />}
+      <MobileUserMenu isMenuVisible={isMenuVisible} />
     </>
   );
 };
