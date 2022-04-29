@@ -1,5 +1,6 @@
-import React, { ReactNode, useEffect, useRef } from 'react';
-import Header from '../navbar/Header';
+import React, { ReactNode, useRef } from 'react';
+import SuggestBar from '../SuggestBar/SuggestBar';
+import Header from './Header';
 
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const hideMenuRef: any = useRef<any>();
@@ -16,6 +17,7 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
       <main onClick={handelMenu} className="overflow-x-hidden lg:flex-1">
         {children}
       </main>
+      <SuggestBar />
     </div>
   );
 };

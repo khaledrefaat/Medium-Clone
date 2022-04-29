@@ -1,5 +1,5 @@
-import NavBar from './NavBar';
-import SideBar from './SideBar';
+import NavBar from '../navbar/NavBar';
+import SideBar from '../sidebar/SideBar';
 
 interface HeaderProps {}
 
