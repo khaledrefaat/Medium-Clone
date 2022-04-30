@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
-import AuthorizedHome from '../components/HomePage/AuthorizedHome';
 import UnAuthorizedHome from '../components/HomePage/UnAuthorizedHome';
+import AuthorizedHome from '../components/HomePage/AuthorizedHome';
 import { Post } from '../typings';
 
 interface HomeProps {
@@ -17,8 +17,8 @@ const Home: NextPage<HomeProps> = () => {
         <meta name="description" content="Medium Blog" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      {/* <AuthorizedHome /> */}
-      <UnAuthorizedHome />
+      <AuthorizedHome />
+      {/* <UnAuthorizedHome /> */}
     </>
   );
 };

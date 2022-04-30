@@ -1,97 +1,51 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
-import AuthModal from '../modal/AuthModal';
-import PostItem from '../post/PostItem';
-import TrendingPost from '../post/TrendingPost';
-import TagsMenu from '../Ui/TagsMenu';
+import UserItem from './UserItem';
 
-const Authorized = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [showSignIn, setShowSignIn] = useState(false);
-
-  function showModal() {
-    setIsModalVisible(true);
-  }
-
-  function hideModal() {
-    setIsModalVisible(false);
-  }
-
-  function showSignInModal() {
-    setShowSignIn(true);
-    showModal();
-  }
-
-  function showSignUpModal() {
-    setShowSignIn(false);
-    showModal();
-  }
-
+const UnAuthorizedHome = () => {
   return (
     <>
-      <section className="bg-yellow-400 pt-32 pb-10 border-b border-black">
-        <div className="container flex justify-between items-center ">
-          <div className="flex-1 mx-auto text-center md:ml-4 md:text-left ">
-            <h2 className="text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-medium mb-7">
-              Stay curious
-            </h2>
-            <h3 className="text-xl max-w-sm font-medium mb-7 mx-auto md:mx-0">
-              Discover stories, and expertise from writers on any topic
-            </h3>
-            <button
-              onClick={showSignUpModal}
-              className="bg-black rounded-full px-10 py-2 text-white text-xl"
-            >
-              Start reading
-            </button>
-          </div>
-          <div className="hidden md:block">
-            <Image src="/medium-hero.png" height={400} width={400} />
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-black py-10 px-5 sm:px-0">
-        <div className="container flex flex-col">
-          <div className="mb-5 flex">
-            <div className="border border-black rounded-full flex items-center">
-              <Image src="/icons/trending.svg" height="12" width="22" />
+      <section className="pt-14 lg:mt-0 h-auto">
+        <div className="container mt-10">
+          <div className="flex items-center">
+            <div className="p-1 rounded-full bg-gray-100 flex items-center mr-2">
+              <Image src="/icons/add.svg" height="28" width="28" />
             </div>
-            <h3 className="ml-2 font-bold uppercase text-gray-800">
-              trending on medium
-            </h3>
+            <p>Keep up with the latest in any topic</p>
           </div>
-          <ul className="grid pl-2 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 list-none">
-            <TrendingPost />
-            <TrendingPost />
-            <TrendingPost />
-            <TrendingPost />
-            <TrendingPost />
-            <TrendingPost />
+          <ul className="flex mt-7">
+            <UserItem
+              href="/user/nicolas"
+              src="/nicolas.jpg"
+              userName="nicolas Vora"
+              followers="1.8k"
+              description="Senior software developer. Currently teaching 200,000+ developers around the world modern skills. Say hi @andreineagoie or"
+              className="mr-3"
+              isFirst
+            />
+            <UserItem
+              href="/user/sigmund"
+              src="/sigmund.jpg"
+              userName="sigmund zheng"
+              followers="1.3k"
+              description="Senior software developer. Currently teaching 200,000+ developers around the world modern skills. Say hi @andreineagoie or"
+              className="mr-3"
+            />
+            <UserItem
+              href="/user/jake"
+              src="/jake.jpg"
+              userName="jake maslov"
+              followers="3.1k"
+              description="Senior software developer. Currently teaching 200,000+ developers around the world modern skills. Say hi @andreineagoie or"
+            />
           </ul>
         </div>
       </section>
 
-      <section className="border-t border-black">
-        <div className="container flex flex-col lg:flex-row-reverse my-10">
-          <div className="w-full lg:w-1/3 mt-5">
-            <TagsMenu />
-          </div>
-          <div className="px-1 lg:px-0 w-full lg:w-2/3">
-            <ul className="w-full flex flex-col">
-              <PostItem onBookmark={showSignInModal} />
-              <PostItem onBookmark={showSignInModal} />
-              <PostItem onBookmark={showSignInModal} />
-              <PostItem onBookmark={showSignInModal} />
-            </ul>
-          </div>
-        </div>
+      <section className="h-screen">
+        <div className="container">Posts</div>
       </section>
-      {isModalVisible && (
-        <AuthModal signIn={showSignIn} hideModal={hideModal} />
-      )}
     </>
   );
 };
 
-export default Authorized;
+export default UnAuthorizedHome;

@@ -18,8 +18,9 @@ const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
 }) => {
   return (
     <div
-      className={`top-0 fixed overflow-y-scroll right-0 z-20 h-auto w-screen bg-white lg:hidden sm:px-10 md:px-20 flex flex-col justify-start ${
-        isMenuVisible && 'bottom-0 pt-5 pb-14 px-3 sm:pr-0 sm:pl-10'
+      className={`top-0 fixed  right-0 z-20 h-auto w-screen bg-white lg:hidden sm:px-10 md:px-20 flex flex-col justify-start ${
+        isMenuVisible &&
+        'bottom-0 pt-5 pb-14 px-3 sm:pr-0 sm:pl-10 overflow-y-scroll'
       }`}
     >
       <div

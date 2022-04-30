@@ -13,6 +13,9 @@ module.exports = {
           '2xl': '6rem',
         },
       },
+      maxWidth: {
+        xs: '18rem',
+      },
     },
   },
   plugins: [],

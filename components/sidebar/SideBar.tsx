@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ReactEventHandler, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import MobileUserMenu from './MobileUserMenu';
 import SideBarItem from './SideBarItem';
 import UserMenu from './UserMenu';
@@ -17,10 +17,11 @@ const SideBar: React.FC<{ hideMenuRef: any }> = ({ hideMenuRef }) => {
   return (
     <>
       <div
-        className="fixed left-0 right-0 bottom-0 bg-white z-50  lg:px-4 lg:relative lg:block lg:top-0"
+        className="fixed left-0 right-0 bottom-0 z-50 bg-white  lg:px-4 lg:relative lg:block lg:top-0"
         onClick={hideMenu}
       >
         <div className="flex  justify-around items-center sticky pt-3 shadow-lg shadow-black lg:shadow-none lg:h-screen lg:top-0 lg:flex-col ">
+          {/* <div className="flex  justify-around items-center -z-10 pt-3 shadow-lg shadow-black lg:shadow-none lg:h-screen lg:top-0 lg:flex-col "> */}
           <div className="hidden lg:block">
             <Link href="/">
               <a>

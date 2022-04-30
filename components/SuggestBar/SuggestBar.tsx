@@ -21,9 +21,9 @@ const SuggestBar = () => {
       clearTimeout(timerId);
     };
   }, []);
-  console.log(isScrolled);
+
   return (
-    <div className={`hidden lg:block p-8 h-full xl:p-10 border-l relative`}>
+    <div className={`hidden lg:block p-6 h-full xl:p-10 border-l relative`}>
       <div className="bg-black text-white font-medium rounded-full py-2 xl:px-20 w-full text-center">
         Get unlimited access
       </div>
