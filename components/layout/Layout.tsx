@@ -1,6 +1,7 @@
 import React, { ReactNode, useRef } from 'react';
 import SuggestBar from '../SuggestBar/SuggestBar';
 import Header from './Header';
+import classes from './Layout.module.css';
 
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const hideMenuRef = useRef<VoidFunction>(null);
@@ -12,7 +13,7 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   return (
-    <div className="lg:flex lg:h-full lg:w-full">
+    <div className={`lg:flex lg:w-full ${classes.layout}`}>
       <Header hideMenuRef={hideMenuRef} />
       <main onClick={handelMenu} className="overflow-x-hidden lg:flex-1">
         {children}

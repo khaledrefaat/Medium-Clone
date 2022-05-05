@@ -18,15 +18,18 @@ const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
   return (
     <div
       className={`top-0 fixed  right-0 z-20 h-auto w-screen bg-white lg:hidden sm:px-10 md:px-20 flex flex-col justify-start ${
-        isMenuVisible &&
-        'bottom-0 pt-5 pb-14 px-3 sm:pr-0 sm:pl-10 overflow-y-scroll'
+        isMenuVisible
+          ? 'bottom-0 pt-5 pb-14 px-3 sm:pr-0 sm:pl-10 overflow-y-scroll'
+          : 'shadow-sm'
       }`}
     >
       <div
-        className={`flex justify-between ${isMenuVisible ? 'mb-10' : 'p-2'}`}
+        className={`flex justify-between items-center ${
+          isMenuVisible ? 'mb-10' : 'p-2'
+        }`}
       >
         <Image src="/medium.png" height="50" width="50" />
-        <button className="text-white bg-black ml-auto text-sm font-normal px-3 py-1  sm:text-base sm:font-medium sm:px-4 sm:py-2 rounded-3xl shadow-sm">
+        <button className="text-white bg-black ml-auto text-sm font-normal px-3 py-2  sm:text-base sm:font-medium sm:px-4 h-fit rounded-3xl shadow-sm">
           Get unlimited access
         </button>
         {!isMenuVisible && (

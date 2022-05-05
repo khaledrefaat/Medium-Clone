@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Ref, useEffect, useState } from 'react';
+import { MouseEvent, Ref, useEffect, useState } from 'react';
 import Divider from '../Ui/Divider';
 import MobileUserMenu from './MobileUserMenu';
 import SideBarItem from './SideBarItem';
@@ -17,6 +17,11 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
     hideMenuRef.current = hideMenu;
   }, []);
 
+  const toggleMenu = (e: MouseEvent) => {
+    setIsMenuVisible(isMenuVisible => !isMenuVisible);
+    e.stopPropagation();
+  };
+
   return (
     <>
       <div
@@ -24,7 +29,6 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
         onClick={hideMenu}
       >
         <div className="flex  justify-around items-center sticky pt-3 shadow-lg shadow-black lg:shadow-none lg:h-screen lg:top-0 lg:flex-col ">
-          {/* <div className="flex  justify-around items-center -z-10 pt-3 shadow-lg shadow-black lg:shadow-none lg:h-screen lg:top-0 lg:flex-col "> */}
           <div className="hidden lg:block">
             <Link href="/">
               <a>
@@ -67,10 +71,7 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
               />
               <li
                 className="lg:hidden lg:mx-auto cursor-pointer relative"
-                onClick={e => {
-                  setIsMenuVisible(isMenuVisible => !isMenuVisible);
-                  e.stopPropagation();
-                }}
+                onClick={toggleMenu}
               >
                 <Image
                   src="/jake.jpg"
@@ -83,10 +84,7 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
           </nav>
           <div
             className="hidden lg:block lg:mx-auto cursor-pointer relative"
-            onClick={e => {
-              setIsMenuVisible(isMenuVisible => !isMenuVisible);
-              e.stopPropagation();
-            }}
+            onClick={toggleMenu}
           >
             <Image
               src="/jake.jpg"
