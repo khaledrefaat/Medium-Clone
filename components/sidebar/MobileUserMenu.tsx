@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React, { ReactChild } from 'react';
+import Divider from '../Ui/Divider';
 import SideBarItem from './SideBarItem';
 
 const MenuItem: React.FC<{
@@ -10,8 +11,6 @@ const MenuItem: React.FC<{
     {children}
   </div>
 );
-
-const Divider = () => <div className="border-b border-gray-300 w-full my-5 " />;
 
 const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
   isMenuVisible,
@@ -54,7 +53,7 @@ const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
               <p className="text-sm text-gray-600">@jakerene8</p>
             </div>
           </div>
-          <Divider />
+          <Divider className="my-5 border-b" />
           <MenuItem className="flex items-center">
             <Image
               src="/icons/notification-outline.svg"
@@ -71,16 +70,16 @@ const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
             <Image src="/icons/bar.svg" height="20" width="20" />
             <span className="ml-3">Stats</span>
           </MenuItem>
-          <Divider />
+          <Divider className="my-5 border-b" />
           <MenuItem>Settings</MenuItem>
           <MenuItem>Manage publications</MenuItem>
           <MenuItem>Refine recommendations</MenuItem>
           <MenuItem>Sign out</MenuItem>
-          <Divider />
+          <Divider className="my-5 border-b" />
           <MenuItem>Become a member</MenuItem>
           <MenuItem>Gift a membership</MenuItem>
           <MenuItem>Medium Partner Program</MenuItem>
-          <Divider />
+          <Divider className="my-5 border-b" />
           <MenuItem>Help</MenuItem>
           <MenuItem>Privacy</MenuItem>
           <MenuItem>Terms</MenuItem>

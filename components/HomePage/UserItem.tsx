@@ -32,7 +32,7 @@ const UserItem: React.FC<UserProps> = ({
 
   return (
     <li
-      className={`${className ? className : ''} relative`}
+      className={`${className ? className : ''} relative z-50`}
       onMouseLeave={hideUserInfo}
       onMouseEnter={showUserInfo}
     >

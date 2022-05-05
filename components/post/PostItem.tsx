@@ -4,7 +4,7 @@ import React from 'react';
 import classes from './PostItem.module.css';
 
 interface PostItemProps {
-  onBookmark: () => void;
+  onBookmark?: () => void;
 }
 
 const PostItem: React.FC<PostItemProps> = ({ onBookmark }) => {

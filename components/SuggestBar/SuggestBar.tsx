@@ -10,7 +10,6 @@ const SuggestBar = () => {
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      console.log('working');
       window.addEventListener('scroll', () => {
         const offset = window.scrollY;
         if (offset > 500) setIsScrolled(true);

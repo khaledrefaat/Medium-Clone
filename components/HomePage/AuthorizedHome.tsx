@@ -1,10 +1,20 @@
 import Image from 'next/image';
+import { useState } from 'react';
+import AuthorizedPostItem from '../post/AuthorizedPostItem';
+import Divider from '../Ui/Divider';
 import UserItem from './UserItem';
 
 const UnAuthorizedHome = () => {
+  const [showMoreMenu, setShowMoreMenu] = useState(true);
+
+  const showMore = () => setShowMoreMenu(true);
+  const hideMore = () => setShowMoreMenu(false);
+
+  console.log(showMoreMenu);
+
   return (
     <>
-      <section className="pt-14 lg:mt-0 h-auto">
+      <section onClick={hideMore} className="pt-14 lg:pt-0 h-auto">
         <div className="container mt-10">
           <div className="flex items-center">
             <div className="p-1 rounded-full bg-gray-100 flex items-center mr-2">
@@ -41,8 +51,59 @@ const UnAuthorizedHome = () => {
         </div>
       </section>
 
-      <section className="h-screen">
-        <div className="container">Posts</div>
+      <section onClick={hideMore}>
+        <div className="container">
+          <div>
+            <button className="mr-10 text-gray-600">Following</button>
+            <button className=" text-gray-600">Recommended</button>
+          </div>
+
+          <Divider className="my-5" />
+
+          <div>
+            <AuthorizedPostItem
+              showMore={showMore}
+              showMoreMenu={showMoreMenu}
+            />
+            <Divider className="my-3" />
+            <AuthorizedPostItem
+              showMore={showMore}
+              showMoreMenu={showMoreMenu}
+            />
+            <Divider className="my-3" />
+            <AuthorizedPostItem
+              showMore={showMore}
+              showMoreMenu={showMoreMenu}
+            />
+            <Divider className="my-3" />
+            <AuthorizedPostItem
+              showMore={showMore}
+              showMoreMenu={showMoreMenu}
+            />
+            <Divider className="my-3" />
+            <AuthorizedPostItem
+              showMore={showMore}
+              showMoreMenu={showMoreMenu}
+            />
+            <Divider className="my-3" />
+            <AuthorizedPostItem
+              showMore={showMore}
+              showMoreMenu={showMoreMenu}
+            />
+            <Divider className="my-3" />
+            <AuthorizedPostItem
+              showMore={showMore}
+              showMoreMenu={showMoreMenu}
+            />
+            <Divider className="my-3" />
+            <AuthorizedPostItem
+              showMore={showMore}
+              showMoreMenu={showMoreMenu}
+              isLast
+            />
+            <Divider className="my-3" />
+          </div>
+        </div>
       </section>
     </>
   );

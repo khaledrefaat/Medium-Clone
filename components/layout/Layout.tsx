@@ -3,7 +3,7 @@ import SuggestBar from '../SuggestBar/SuggestBar';
 import Header from './Header';
 
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const hideMenuRef: any = useRef<any>();
+  const hideMenuRef = useRef<VoidFunction>(null);
 
   const handelMenu = () => {
     if (typeof hideMenuRef.current === 'function') {

@@ -1,11 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { Ref, useEffect, useState } from 'react';
+import Divider from '../Ui/Divider';
 import MobileUserMenu from './MobileUserMenu';
 import SideBarItem from './SideBarItem';
 import UserMenu from './UserMenu';
 
-const SideBar: React.FC<{ hideMenuRef: any }> = ({ hideMenuRef }) => {
+const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
+  hideMenuRef,
+}) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const hideMenu = () => setIsMenuVisible(false);
@@ -17,7 +20,7 @@ const SideBar: React.FC<{ hideMenuRef: any }> = ({ hideMenuRef }) => {
   return (
     <>
       <div
-        className="fixed left-0 right-0 bottom-0 z-50 bg-white  lg:px-4 lg:relative lg:block lg:top-0"
+        className="fixed left-0 right-0 bottom-0 z-50 bg-white  lg:px-4 lg:relative lg:block lg:top-0 border-r border-gray-200"
         onClick={hideMenu}
       >
         <div className="flex  justify-around items-center sticky pt-3 shadow-lg shadow-black lg:shadow-none lg:h-screen lg:top-0 lg:flex-col ">
@@ -56,7 +59,7 @@ const SideBar: React.FC<{ hideMenuRef: any }> = ({ hideMenuRef }) => {
                 src="/icons/bookmark-outline.svg"
                 className="lg:mx-0 lg:mt-5 mr-5 sm:mr-10 lg:mr-0"
               />
-              <li className="hidden lg:block border-b-2 border-gray-300 w-full my-8" />
+              <Divider className="hidden lg:block my-8 border-b-2" />
               <SideBarItem
                 href="/post/new"
                 src="/icons/pencil-outline.svg"

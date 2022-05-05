@@ -9,8 +9,8 @@ module.exports = {
         center: true,
         padding: {
           lg: '4rem',
-          xl: '5rem',
-          '2xl': '6rem',
+          xl: '6rem',
+          '2xl': '8rem',
         },
       },
       maxWidth: {
