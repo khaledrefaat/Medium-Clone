@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { useState } from 'react';
 import AuthorizedPostItem from '../post/AuthorizedPostItem';
 import Divider from '../Ui/Divider';
+import DividerButton from '../Ui/DividerButton';
+import SectionDivider from '../Ui/SectionDivider';
 import UserItem from './UserItem';
 
 const UnAuthorizedHome = () => {
@@ -14,8 +16,8 @@ const UnAuthorizedHome = () => {
 
   return (
     <>
-      <section onClick={hideMore} className="pt-14 lg:pt-0 h-auto">
-        <div className="container mt-10">
+      <section onClick={hideMore}>
+        <div className="container mt-10 pt-14 ml-2 sm:ml-auto lg:pt-0 h-auto">
           <div className="flex items-center">
             <div className="p-1 rounded-full bg-gray-100 flex items-center mr-2">
               <Image src="/icons/add.svg" height="28" width="28" />
@@ -52,13 +54,13 @@ const UnAuthorizedHome = () => {
       </section>
 
       <section onClick={hideMore}>
-        <div className="container">
-          <div>
-            <button className="mr-10 text-gray-600">Following</button>
-            <button className=" text-gray-600">Recommended</button>
-          </div>
-
-          <Divider className="my-5" />
+        <div className="container ml-2 sm:ml-auto pb-10">
+          <SectionDivider>
+            <DividerButton active className="mr-8">
+              following
+            </DividerButton>
+            <DividerButton>recommended</DividerButton>
+          </SectionDivider>
 
           <div>
             <AuthorizedPostItem

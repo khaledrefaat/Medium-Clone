@@ -32,11 +32,11 @@ const UserItem: React.FC<UserProps> = ({
 
   return (
     <li
-      className={`${className ? className : ''} relative z-50`}
+      className={`${className ? className : ''} relative z-30`}
       onMouseLeave={hideUserInfo}
       onMouseEnter={showUserInfo}
     >
-      <div className="pb-16">
+      <div className="pb-8">
         <Link href={href}>
           <a>
             <Image src={src} height="50" width="50" className="rounded-full" />

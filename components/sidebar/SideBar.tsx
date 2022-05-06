@@ -49,7 +49,7 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
                 className="mr-5 sm:mr-10 lg:mr-0"
               />
               <SideBarItem
-                href="/notification"
+                href="/me/notifications"
                 src="/icons/notification-outline.svg"
                 className="hidden lg:block lg:mx-0 lg:my-5 mr-5 sm:mr-10 lg:mr-0"
               />
@@ -59,7 +59,7 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
                 className="lg:hidden"
               />
               <SideBarItem
-                href="/bookmark"
+                href="/me/lists"
                 src="/icons/bookmark-outline.svg"
                 className="lg:mx-0 lg:mt-5 mr-5 sm:mr-10 lg:mr-0"
               />

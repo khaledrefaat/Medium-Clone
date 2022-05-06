@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
 import NotificationUser from '../../components/Notification/NotificationUser';
-import Divider from '../../components/Ui/Divider';
+import DividerButton from '../../components/Ui/DividerButton';
+import SectionDivider from '../../components/Ui/SectionDivider';
+import SectionHeading from '../../components/Ui/SectionHeading';
 
 interface DummyDataInterface {
   title: string;
@@ -26,18 +28,18 @@ for (let i = 0; i < 8; i++) {
 const notifications = () => {
   return (
     <section>
-      <div className="container mt-24 lg:mt-12 mb-5">
-        <h1 className="text-4xl font-extrabold font-sans">Notifications</h1>
-
-        <div className="flex mt-10 mb-2">
-          <div className="mr-10 font-medium">All</div>
-          <div className=" text-gray-500">Responses</div>
-        </div>
-        <Divider />
-        <div className="p-8">
+      <div className="container mt-24 lg:mt-12 mb-5 ml-3 sm:ml-auto">
+        <SectionHeading>Notifications</SectionHeading>
+        <SectionDivider>
+          <DividerButton active className="mr-10">
+            all
+          </DividerButton>
+          <DividerButton>responses</DividerButton>
+        </SectionDivider>
+        <div className="py-4  md:pl-3 md:py-8">
           {/* <NotificationUser {...DUMMY_DATA} /> */}
-          {DUMMY_ARRAY.map(item => (
-            <NotificationUser {...item} />
+          {DUMMY_ARRAY.map((item, index) => (
+            <NotificationUser key={index} {...item} />
           ))}
           <div className="flex justify-between w-full">
             <Link href="/notifications/old">

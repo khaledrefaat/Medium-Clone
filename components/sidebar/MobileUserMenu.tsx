@@ -17,14 +17,14 @@ const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
 }) => {
   return (
     <div
-      className={`top-0 fixed  right-0 z-20 h-auto w-screen bg-white lg:hidden sm:px-10 md:px-20 flex flex-col justify-start ${
+      className={`top-0 fixed  right-0 z-40 h-auto w-screen bg-white px-2 lg:hidden sm:px-10 md:px-20 flex flex-col justify-start ${
         isMenuVisible
           ? 'bottom-0 pt-5 pb-14 px-3 sm:pr-0 sm:pl-10 overflow-y-scroll'
           : 'shadow-sm'
       }`}
     >
       <div
-        className={`flex justify-between items-center ${
+        className={`flex justify-between items-center px-1 ${
           isMenuVisible ? 'mb-10' : 'p-2'
         }`}
       >
@@ -34,14 +34,14 @@ const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
         </button>
         {!isMenuVisible && (
           <SideBarItem
-            href="/notification"
+            href="/me/notifications"
             src="/icons/notification-outline.svg"
             className="list-none mr-3 sm:mr-0 ml-5 flex items-center "
           />
         )}
       </div>
       {isMenuVisible && (
-        <div>
+        <div className="pl-2 sm:pl-0">
           <div className="flex">
             <div className="mr-3">
               <Image
