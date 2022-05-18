@@ -5,6 +5,7 @@ export interface Session extends Session {
     name: string;
     email: string;
     image: string;
+    id: string;
   };
   expires: string;
 }

@@ -12,10 +12,6 @@ interface AuthModalProps {
 }
 
 const AuthModal: React.FC<AuthModalProps> = ({ signIn, hideModal }) => {
-  const [isSignIn, setIsSignIn] = useState(signIn || false);
-
-  const handelSwitch = () => setIsSignIn(isSignIn => !isSignIn);
-
   return (
     <Modal hideModal={hideModal}>
       <div
@@ -28,54 +24,23 @@ const AuthModal: React.FC<AuthModalProps> = ({ signIn, hideModal }) => {
           </button>
         </div>
         <div>
-          <h3 className="font-medium text-xl text-center">
-            {isSignIn
-              ? 'Welcome back.'
-              : 'Create an account to bookmark this story.'}
-          </h3>
+          <h3 className="font-medium text-xl text-center">Welcome to medium</h3>
         </div>
-        {!isSignIn && (
-          <div>
-            <p className="w-2/3 mx-auto text-center">
-              Save stories to your personalized bookmarks and access them
-              anytime, anywhere.
-            </p>
-          </div>
-        )}
         <div className="flex flex-col">
-          <SocialButton isSignIn={isSignIn} name="google" />
-          <SocialButton isSignIn={isSignIn} name="facebook" />
-          <SocialButton isSignIn={isSignIn} name="github" />
-        </div>
-        <div>
-          {isSignIn ? (
-            <p>
-              No account?
-              <button
-                className=" font-bold text-green-700"
-                onClick={handelSwitch}
-              >
-                Create one
-              </button>
-            </p>
-          ) : (
-            <p>
-              Already have an account?
-              <button
-                className=" font-bold text-green-700"
-                onClick={handelSwitch}
-              >
-                Sign in
-              </button>
-            </p>
-          )}
+          <SocialButton name="google" />
+          <SocialButton name="facebook" />
+          <SocialButton name="github" />
         </div>
         <div>
           <p className="text-xs text-gray-500 px-2 text-center">
-            Click “Sign Up” to agree to Medium’s
-            <span className="cursor-pointer underline">Terms of Service</span>
+            Click “Continue to” to agree to Medium’s
+            <span className="cursor-pointer underline mx-1">
+              Terms of Service
+            </span>
             and acknowledge that Medium’s
-            <span className="cursor-pointer underline">Privacy Policy</span>
+            <span className="cursor-pointer underline mx-1">
+              Privacy Policy
+            </span>
             applies to you.
           </p>
         </div>
