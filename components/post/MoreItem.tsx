@@ -1,7 +1,4 @@
 import Image from 'next/image';
-import { useEffect } from 'react';
-import { MouseEvent, MouseEventHandler } from 'react';
-import { useState } from 'react';
 import Divider from '../Ui/Divider';
 
 const MoreItem: React.FC<{ isLast?: boolean }> = ({ isLast }) => {
@@ -12,7 +9,6 @@ const MoreItem: React.FC<{ isLast?: boolean }> = ({ isLast }) => {
       }`}
       onClick={e => e.stopPropagation()}
     >
-      {/* over flow happens because last element overflow the body to fix this just make it custom and make it above the more icons */}
       <div
         className={`absolute left-1/2 drop-shadow-sm -translate-x-1/2 ${
           isLast ? '-bottom-5' : '-top-5 rotate-180'

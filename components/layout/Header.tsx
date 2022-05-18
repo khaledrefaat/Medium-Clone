@@ -1,3 +1,4 @@
+import { useSession } from 'next-auth/react';
 import { Ref } from 'react';
 import NavBar from '../navbar/NavBar';
 import SideBar from '../sidebar/SideBar';
@@ -7,9 +8,16 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ hideMenuRef }) => {
-  // render based on is user logged in or not
-  // return <NavBar />;
-  return <SideBar hideMenuRef={hideMenuRef} />;
+  const { status } = useSession();
+
+  if (status === 'loading') {
+    return null;
+  }
+
+  if (status === 'authenticated') {
+    return <SideBar hideMenuRef={hideMenuRef} />;
+  }
+  return <NavBar />;
 };
 
 export default Header;

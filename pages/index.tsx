@@ -1,15 +1,15 @@
-import type { NextPage } from 'next';
+import type { GetServerSideProps, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import { useState } from 'react';
 import UnAuthorizedHome from '../components/HomePage/UnAuthorizedHome';
 import AuthorizedHome from '../components/HomePage/AuthorizedHome';
-import { Post } from '../typings';
+import { getSession } from 'next-auth/react';
+import { Session } from '../typings';
 
 interface HomeProps {
-  posts: Post[];
+  sess?: Session;
 }
 
-const Home: NextPage<HomeProps> = () => {
+const Home: NextPage<HomeProps> = ({ sess }) => {
   return (
     <>
       <Head>
@@ -17,10 +17,19 @@ const Home: NextPage<HomeProps> = () => {
         <meta name="description" content="Medium Blog" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <AuthorizedHome />
-      {/* <UnAuthorizedHome /> */}
+      {sess ? <AuthorizedHome /> : <UnAuthorizedHome />}
     </>
   );
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const session = await getSession(ctx);
+
+  return {
+    props: {
+      sess: session,
+    },
+  };
+};

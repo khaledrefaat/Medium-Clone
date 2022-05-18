@@ -1,11 +1,25 @@
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 
-const UserMenuItem: React.FC<{ content: string }> = ({ content }) => (
-  <li className="mb-5">{content}</li>
+const UserMenuItem: React.FC<{ content: string; signOut?: () => void }> = ({
+  content,
+  signOut,
+}) => (
+  <li className="mb-5" onClick={signOut}>
+    {content}
+  </li>
 );
+
 const UserMenu = () => {
+  const { data: session, status } = useSession();
+
+  if (status === 'loading') return null;
+
   return (
-    <div className="absolute hidden lg:block bottom-16 left-0 bg-white p-5 pr-16 w-max shadow-lg rounded-md">
+    <div
+      className="absolute hidden lg:block bottom-16 left-0 bg-white p-5 pr-16 w-max shadow-lg rounded-md"
+      onClick={e => e.stopPropagation()}
+    >
       <ul>
         <UserMenuItem content="Medium Partner Program" />
         <UserMenuItem content="Gift a membership" />
@@ -14,7 +28,7 @@ const UserMenu = () => {
           &nbsp;
           <span className="border-b-2 border-slate-200 w-full absolute left-0 right-0" />
         </div>
-        <UserMenuItem content="Sign out" />
+        <UserMenuItem content="Sign out" signOut={signOut} />
         <UserMenuItem content="Refine recommendations" />
         <UserMenuItem content="Mange publications" />
         <UserMenuItem content="Stats" />
@@ -26,15 +40,18 @@ const UserMenu = () => {
         <li className="flex justify-start">
           <div className="mr-3">
             <Image
-              src="/jake.jpg"
+              loader={() => session?.user?.image as string}
+              src={session?.user?.image as string}
               height="45"
               width="45"
               className="rounded-full"
             />
           </div>
           <div>
-            <h4 className="font-medium">Jake Rene</h4>
-            <p className="text-xs text-gray-700">@jakerene8</p>
+            <h4 className="font-medium">{session?.user?.name}</h4>
+            <p className="text-xs text-gray-700">
+              @{session?.user?.email?.split('@')[0]}
+            </p>
           </div>
         </li>
       </ul>

@@ -1,20 +1,16 @@
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
-import React, { ReactChild } from 'react';
 import Divider from '../Ui/Divider';
+import MobileMenuItem from './MobileMenuItem';
 import SideBarItem from './SideBarItem';
-
-const MenuItem: React.FC<{
-  className?: string;
-  children: ReactChild | ReactChild[];
-}> = ({ className, children }) => (
-  <div className={`cursor-pointer mb-7 ${className && className}`}>
-    {children}
-  </div>
-);
 
 const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
   isMenuVisible,
 }) => {
+  const { data: session, status } = useSession();
+
+  if (status === 'loading') return null;
+
   return (
     <div
       className={`top-0 fixed  right-0 z-40 h-auto w-screen bg-white px-2 lg:hidden sm:px-10 md:px-20 flex flex-col justify-start ${
@@ -45,7 +41,8 @@ const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
           <div className="flex">
             <div className="mr-3">
               <Image
-                src="/jake.jpg"
+                loader={() => session?.user?.image as string}
+                src={session?.user?.image as string}
                 height="45"
                 width="45"
                 className="rounded-full"
@@ -57,35 +54,35 @@ const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
             </div>
           </div>
           <Divider className="my-5 border-b" />
-          <MenuItem className="flex items-center">
+          <MobileMenuItem className="flex items-center">
             <Image
               src="/icons/notification-outline.svg"
               height="20"
               width="20"
             />
             <span className="ml-3">Notifications</span>
-          </MenuItem>
-          <MenuItem className="flex items-center">
+          </MobileMenuItem>
+          <MobileMenuItem className="flex items-center">
             <Image src="/icons/story.svg" height="20" width="20" />
             <span className="ml-3">Stories</span>
-          </MenuItem>
-          <MenuItem className="flex items-center">
+          </MobileMenuItem>
+          <MobileMenuItem className="flex items-center">
             <Image src="/icons/bar.svg" height="20" width="20" />
             <span className="ml-3">Stats</span>
-          </MenuItem>
+          </MobileMenuItem>
           <Divider className="my-5 border-b" />
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Manage publications</MenuItem>
-          <MenuItem>Refine recommendations</MenuItem>
-          <MenuItem>Sign out</MenuItem>
+          <MobileMenuItem>Settings</MobileMenuItem>
+          <MobileMenuItem>Manage publications</MobileMenuItem>
+          <MobileMenuItem>Refine recommendations</MobileMenuItem>
+          <MobileMenuItem signOut={signOut}>Sign out</MobileMenuItem>
           <Divider className="my-5 border-b" />
-          <MenuItem>Become a member</MenuItem>
-          <MenuItem>Gift a membership</MenuItem>
-          <MenuItem>Medium Partner Program</MenuItem>
+          <MobileMenuItem>Become a member</MobileMenuItem>
+          <MobileMenuItem>Gift a membership</MobileMenuItem>
+          <MobileMenuItem>Medium Partner Program</MobileMenuItem>
           <Divider className="my-5 border-b" />
-          <MenuItem>Help</MenuItem>
-          <MenuItem>Privacy</MenuItem>
-          <MenuItem>Terms</MenuItem>
+          <MobileMenuItem>Help</MobileMenuItem>
+          <MobileMenuItem>Privacy</MobileMenuItem>
+          <MobileMenuItem>Terms</MobileMenuItem>
         </div>
       )}
     </div>

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import AuthModal from '../modal/AuthModal';
+import NavItem from './NavItem';
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -55,29 +56,11 @@ const NavBar = () => {
               </a>
             </Link>
           </div>
-          <nav className="w-1/2 xl:w-1/3">
-            <ul className="flex justify-evenly items-center">
-              <li>
-                <Link href="/">
-                  <a className="hidden md:inline text-sm  capitalize font-medium">
-                    our story
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/">
-                  <a className="hidden md:inline text-sm  capitalize font-medium">
-                    membership
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/">
-                  <a className="hidden md:inline text-sm  capitalize font-medium">
-                    write
-                  </a>
-                </Link>
-              </li>
+          <nav className="w-1/2 xl:w-2/5">
+            <ul className="flex justify-between items-center">
+              <NavItem href="/">our story</NavItem>
+              <NavItem href="/">membership</NavItem>
+              <NavItem href="/">write</NavItem>
               <li
                 className="text-sm  capitalize cursor-pointer font-medium"
                 onClick={handelSignIn}

@@ -30,7 +30,7 @@ const UnAuthorizedHome = () => {
               src="/nicolas.jpg"
               userName="nicolas Vora"
               followers="1.8k"
-              description="Senior software developer. Currently teaching 200,000+ developers around the world modern skills. Say hi @andreineagoie or"
+              description="Senior software developer. Currently teaching 200,000+ developers around the world modern skills. Say hi Jake Maslov or"
               className="mr-3"
               isFirst
             />
@@ -39,7 +39,7 @@ const UnAuthorizedHome = () => {
               src="/sigmund.jpg"
               userName="sigmund zheng"
               followers="1.3k"
-              description="Senior software developer. Currently teaching 200,000+ developers around the world modern skills. Say hi @andreineagoie or"
+              description="Senior software developer. Currently teaching 200,000+ developers around the world modern skills. Say hi Jake Maslov or"
               className="mr-3"
             />
             <UserItem
@@ -47,7 +47,7 @@ const UnAuthorizedHome = () => {
               src="/jake.jpg"
               userName="jake maslov"
               followers="3.1k"
-              description="Senior software developer. Currently teaching 200,000+ developers around the world modern skills. Say hi @andreineagoie or"
+              description="Senior software developer. Currently teaching 200,000+ developers around the world modern skills. Say hi Jake Maslov or"
             />
           </ul>
         </div>
@@ -66,44 +66,108 @@ const UnAuthorizedHome = () => {
             <AuthorizedPostItem
               showMore={showMore}
               showMoreMenu={showMoreMenu}
+              imageSrc="/jake.jpg"
+              userName="ellen litman"
+              category="Coding"
+              date="apr18"
+              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+                years”)"
+              content="In the last couple of weeks, Russia withdrew its forces from around
+              Kyiv and announced that its true goal is to “liberate” Donbas,
+              which"
+              tag="programming"
+              readingTime={8}
             />
-            <Divider className="my-3" />
             <AuthorizedPostItem
               showMore={showMore}
               showMoreMenu={showMoreMenu}
+              imageSrc="/jake.jpg"
+              userName="ellen litman"
+              category="Coding"
+              date="apr18"
+              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+                years”)"
+              content="In the last couple of weeks, Russia withdrew its forces from around
+              Kyiv and announced that its true goal is to “liberate” Donbas,
+              which"
+              tag="programming"
+              readingTime={8}
             />
-            <Divider className="my-3" />
             <AuthorizedPostItem
               showMore={showMore}
               showMoreMenu={showMoreMenu}
+              imageSrc="/jake.jpg"
+              userName="ellen litman"
+              category="Coding"
+              date="apr18"
+              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+                years”)"
+              content="In the last couple of weeks, Russia withdrew its forces from around
+              Kyiv and announced that its true goal is to “liberate” Donbas,
+              which"
+              tag="programming"
+              readingTime={8}
             />
-            <Divider className="my-3" />
             <AuthorizedPostItem
               showMore={showMore}
               showMoreMenu={showMoreMenu}
+              imageSrc="/jake.jpg"
+              userName="ellen litman"
+              category="Coding"
+              date="apr18"
+              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+                years”)"
+              content="In the last couple of weeks, Russia withdrew its forces from around
+              Kyiv and announced that its true goal is to “liberate” Donbas,
+              which"
+              tag="programming"
+              readingTime={8}
             />
-            <Divider className="my-3" />
             <AuthorizedPostItem
               showMore={showMore}
               showMoreMenu={showMoreMenu}
+              imageSrc="/jake.jpg"
+              userName="ellen litman"
+              category="Coding"
+              date="apr18"
+              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+                years”)"
+              content="In the last couple of weeks, Russia withdrew its forces from around
+              Kyiv and announced that its true goal is to “liberate” Donbas,
+              which"
+              tag="programming"
+              readingTime={8}
             />
-            <Divider className="my-3" />
             <AuthorizedPostItem
               showMore={showMore}
               showMoreMenu={showMoreMenu}
+              imageSrc="/jake.jpg"
+              userName="ellen litman"
+              category="Coding"
+              date="apr18"
+              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+                years”)"
+              content="In the last couple of weeks, Russia withdrew its forces from around
+              Kyiv and announced that its true goal is to “liberate” Donbas,
+              which"
+              tag="programming"
+              readingTime={8}
             />
-            <Divider className="my-3" />
             <AuthorizedPostItem
               showMore={showMore}
               showMoreMenu={showMoreMenu}
+              imageSrc="/jake.jpg"
+              userName="ellen litman"
+              category="Coding"
+              date="apr18"
+              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+                years”)"
+              content="In the last couple of weeks, Russia withdrew its forces from around
+              Kyiv and announced that its true goal is to “liberate” Donbas,
+              which"
+              tag="programming"
+              readingTime={8}
             />
-            <Divider className="my-3" />
-            <AuthorizedPostItem
-              showMore={showMore}
-              showMoreMenu={showMoreMenu}
-              isLast
-            />
-            <Divider className="my-3" />
           </div>
         </div>
       </section>

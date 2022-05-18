@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
+import { signIn as authSignIn, signOut } from 'next-auth/react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import SocialButton from './SocialButton';
 
 interface AuthModalProps {
   hideModal: () => void;
@@ -40,37 +42,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ signIn, hideModal }) => {
             </p>
           </div>
         )}
-        <div>
-          <div>
-            <Link href="/">
-              <a className="flex items-center px-4 py-2 border text-sm border-gray-500 rounded-full">
-                <Image src="/icons/google.svg" height="20" width="20" />
-                <span className="ml-2">
-                  {isSignIn ? 'Sign In' : 'Sign up'} with google
-                </span>
-              </a>
-            </Link>
-          </div>
-          <div>
-            <Link href="/">
-              <a className="flex items-center px-4 py-2 border text-sm border-gray-500 rounded-full my-3">
-                <Image src="/icons/facebook.svg" height="20" width="20" />
-                <span className="ml-2">
-                  {isSignIn ? 'Sign In' : 'Sign up'} with facebook
-                </span>
-              </a>
-            </Link>
-          </div>
-          <div>
-            <Link href="/">
-              <a className="flex items-center px-4 py-2 border text-sm border-gray-500 rounded-full">
-                <Image src="/icons/mail.svg" height="20" width="20" />
-                <span className="ml-2">
-                  {isSignIn ? 'Sign In' : 'Sign up'} with email
-                </span>
-              </a>
-            </Link>
-          </div>
+        <div className="flex flex-col">
+          <SocialButton isSignIn={isSignIn} name="google" />
+          <SocialButton isSignIn={isSignIn} name="facebook" />
+          <SocialButton isSignIn={isSignIn} name="github" />
         </div>
         <div>
           {isSignIn ? (

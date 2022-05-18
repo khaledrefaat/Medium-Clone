@@ -1,6 +1,8 @@
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MouseEvent, Ref, useEffect, useState } from 'react';
+import { Session } from '../../typings';
 import Divider from '../Ui/Divider';
 import MobileUserMenu from './MobileUserMenu';
 import SideBarItem from './SideBarItem';
@@ -9,6 +11,12 @@ import UserMenu from './UserMenu';
 const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
   hideMenuRef,
 }) => {
+  const { data: session, status } = useSession();
+
+  if (status === 'loading') {
+    return null;
+  }
+  console.log(session);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const hideMenu = () => setIsMenuVisible(false);
@@ -65,7 +73,7 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
               />
               <Divider className="hidden lg:block my-8 border-b-2" />
               <SideBarItem
-                href="/post/new"
+                href="/post/new-post"
                 src="/icons/pencil-outline.svg"
                 className="hidden lg:block"
               />
@@ -74,7 +82,8 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
                 onClick={toggleMenu}
               >
                 <Image
-                  src="/jake.jpg"
+                  loader={() => session?.user?.image as string}
+                  src={session?.user?.image as string}
                   height="40"
                   width="40"
                   className="rounded-full"
@@ -87,7 +96,8 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
             onClick={toggleMenu}
           >
             <Image
-              src="/jake.jpg"
+              loader={() => session?.user?.image as string}
+              src={session?.user?.image as string}
               height="40"
               width="40"
               className="rounded-full"

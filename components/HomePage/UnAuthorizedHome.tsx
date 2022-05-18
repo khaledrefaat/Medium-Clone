@@ -79,10 +79,42 @@ const Authorized = () => {
           </div>
           <div className="px-1 lg:px-0 w-full lg:w-2/3">
             <ul className="w-full flex flex-col">
-              <PostItem onBookmark={showSignInModal} />
-              <PostItem onBookmark={showSignInModal} />
-              <PostItem onBookmark={showSignInModal} />
-              <PostItem onBookmark={showSignInModal} />
+              <PostItem
+                onBookmark={showSignInModal}
+                imageSrc="/jake.jpg"
+                content="In the last couple of weeks, Russia withdrew its forces from around
+          Kyiv and announced that its true goal is to “liberate” Donbas, which"
+                title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+            years”)"
+                date="apr18"
+                readingTime={8}
+                tag="programming"
+                userName="ellen litman"
+              />
+              <PostItem
+                onBookmark={showSignInModal}
+                imageSrc="/jake.jpg"
+                content="In the last couple of weeks, Russia withdrew its forces from around
+          Kyiv and announced that its true goal is to “liberate” Donbas, which"
+                title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+            years”)"
+                date="apr18"
+                readingTime={8}
+                tag="programming"
+                userName="ellen litman"
+              />
+              <PostItem
+                onBookmark={showSignInModal}
+                imageSrc="/jake.jpg"
+                content="In the last couple of weeks, Russia withdrew its forces from around
+          Kyiv and announced that its true goal is to “liberate” Donbas, which"
+                title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+            years”)"
+                date="apr18"
+                readingTime={8}
+                tag="programming"
+                userName="ellen litman"
+              />
             </ul>
           </div>
         </div>

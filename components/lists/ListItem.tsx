@@ -14,10 +14,9 @@ const ImageComponent: React.FC<{ className?: string }> = ({ className }) => (
 interface ListItemProps {
   title: string;
   isLocked?: boolean;
-  imagesSrc?: [string, string, string];
 }
 
-const ListItem: React.FC<ListItemProps> = ({ title, isLocked, imagesSrc }) => {
+const ListItem: React.FC<ListItemProps> = ({ title, isLocked }) => {
   return (
     <div className="flex justify-between bg-gray-50 border px-3 py-5 relative overflow-hidden rounded-md mb-10">
       <div>
@@ -26,7 +25,7 @@ const ListItem: React.FC<ListItemProps> = ({ title, isLocked, imagesSrc }) => {
           <Button className="border text-black border-gray-600 mr-5 text-sm hover:border-black">
             View list
           </Button>
-          <Image src="/icons/lock.svg" height="12" width="12" />
+          {isLocked && <Image src="/icons/lock.svg" height="12" width="12" />}
         </div>
       </div>
       <div>

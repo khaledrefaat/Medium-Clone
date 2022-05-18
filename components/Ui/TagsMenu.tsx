@@ -6,7 +6,6 @@ const TagsMenu = () => {
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      console.log('working');
       window.addEventListener('scroll', () => {
         const offset = window.scrollY;
         if (offset > 850) setIsScrolling(true);
