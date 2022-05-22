@@ -16,7 +16,6 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
   if (status === 'loading') {
     return null;
   }
-  console.log(session);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const hideMenu = () => setIsMenuVisible(false);
