@@ -1,7 +1,8 @@
-import Image from 'next/image';
+import Image, { ImageLoaderProps } from 'next/image';
 import Link from 'next/link';
 import { MouseEvent, useEffect } from 'react';
 import { useState } from 'react';
+import { imageLoader } from '../../lib/util';
 import Divider from '../Ui/Divider';
 import MoreItem from './MoreItem';
 
@@ -9,14 +10,16 @@ interface AuthorizedPostItemProps {
   isLast?: boolean;
   showMore: () => void;
   showMoreMenu: boolean;
-  imageSrc: string;
-  userName: string;
+  authorImage: string;
+  author: string;
+  mainImage: string;
   category: string;
   date: string;
   title: string;
-  content: string;
+  description: string;
   tag: string;
   readingTime: number;
+  id: string;
 }
 
 const AuthorizedPostItem: React.FC<AuthorizedPostItemProps> = props => {
@@ -43,12 +46,13 @@ const AuthorizedPostItem: React.FC<AuthorizedPostItemProps> = props => {
         <div>
           <div className="flex items-center mb-3">
             <Image
-              src="/jake.jpg"
+              loader={imageLoader}
+              src={props.authorImage}
               height={25}
               width={25}
               className="rounded-full"
             />
-            <p className="text-xs sm:text-base ml-3">{props.userName}</p>
+            <p className="text-xs sm:text-base ml-3">{props.author}</p>
             <div className="text-xs text-gray-700 ml-0.5">in</div>
             <Link href="/tag/coding">
               <a className="text-xs sm:text-base ml-0.5 capitalize">
@@ -60,12 +64,12 @@ const AuthorizedPostItem: React.FC<AuthorizedPostItemProps> = props => {
             </div>
           </div>
           <h3 className="text-sm xs:text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-1">
-            <Link href="/tag/Telegram-Chronicles-Donbas-and-its-War">
+            <Link href={`/post/${props.id}`}>
               <a>{props.title}</a>
             </Link>
           </h3>
           <p className="hidden sm:block text-gray-600 text-sm">
-            {props.content.substring(0, 165) + '...'}
+            {props.description.substring(0, 165) + '...'}
           </p>
           <div className="mt-5 flex items-center">
             <Link href="/">
@@ -101,7 +105,13 @@ const AuthorizedPostItem: React.FC<AuthorizedPostItemProps> = props => {
           </div>
         </div>
         <div className={`ml-3 `}>
-          <Image src="/post-1.jpg" height="130" width="130" layout="fixed" />
+          <Image
+            loader={imageLoader}
+            src={props.mainImage}
+            height="130"
+            width="130"
+            layout="fixed"
+          />
         </div>
       </li>
       <Divider className="my-3" />

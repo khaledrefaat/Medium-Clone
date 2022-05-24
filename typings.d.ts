@@ -18,6 +18,7 @@ interface Author {
       _type: string;
     };
   };
+  name: string;
 }
 
 interface Category {
@@ -62,4 +63,5 @@ export interface Post {
   mainImage: MainImage;
   slug: { _type: string; current: string };
   title: string;
+  _createdAt: string;
 }

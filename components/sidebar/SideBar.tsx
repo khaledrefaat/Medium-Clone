@@ -2,7 +2,6 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MouseEvent, Ref, useEffect, useState } from 'react';
-import { Session } from '../../typings';
 import Divider from '../Ui/Divider';
 import MobileUserMenu from './MobileUserMenu';
 import SideBarItem from './SideBarItem';
@@ -56,7 +55,6 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
                 className="mr-5 sm:mr-10 lg:mr-0"
               />
               <SideBarItem
-                href="/me/notifications"
                 src="/icons/notification-outline.svg"
                 className="hidden lg:block lg:mx-0 lg:my-5 mr-5 sm:mr-10 lg:mr-0"
               />
@@ -66,13 +64,16 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
                 className="lg:hidden"
               />
               <SideBarItem
+                src="/icons/stories.svg"
+                className="hidden lg:block lg:mx-0 lg:my-5 mr-5 sm:mr-10 lg:mr-0"
+              />
+              <SideBarItem
                 href="/me/lists"
                 src="/icons/bookmark-outline.svg"
                 className="lg:mx-0 lg:mt-5 mr-5 sm:mr-10 lg:mr-0"
               />
               <Divider className="hidden lg:block my-8 border-b-2" />
               <SideBarItem
-                href="/post/new-post"
                 src="/icons/pencil-outline.svg"
                 className="hidden lg:block"
               />
@@ -81,7 +82,7 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
                 onClick={toggleMenu}
               >
                 <Image
-                  loader={() => session?.user?.image as string}
+                  unoptimized
                   src={session?.user?.image as string}
                   height="40"
                   width="40"
@@ -95,7 +96,7 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
             onClick={toggleMenu}
           >
             <Image
-              loader={() => session?.user?.image as string}
+              unoptimized
               src={session?.user?.image as string}
               height="40"
               width="40"

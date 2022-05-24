@@ -1,11 +1,14 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { urlFor } from '../../lib/sanity';
+import { formatDate } from '../../lib/util';
+import { Post } from '../../typings';
 import AuthModal from '../modal/AuthModal';
 import PostItem from '../post/PostItem';
 import TrendingPost from '../post/TrendingPost';
 import TagsMenu from '../Ui/TagsMenu';
 
-const Authorized = () => {
+const UnAuthorizedHome: React.FC<{ posts: Post[] }> = ({ posts }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
 
@@ -79,42 +82,23 @@ const Authorized = () => {
           </div>
           <div className="px-1 lg:px-0 w-full lg:w-2/3">
             <ul className="w-full flex flex-col">
-              <PostItem
-                onBookmark={showSignInModal}
-                imageSrc="/jake.jpg"
-                content="In the last couple of weeks, Russia withdrew its forces from around
-          Kyiv and announced that its true goal is to “liberate” Donbas, which"
-                title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-            years”)"
-                date="apr18"
-                readingTime={8}
-                tag="programming"
-                userName="ellen litman"
-              />
-              <PostItem
-                onBookmark={showSignInModal}
-                imageSrc="/jake.jpg"
-                content="In the last couple of weeks, Russia withdrew its forces from around
-          Kyiv and announced that its true goal is to “liberate” Donbas, which"
-                title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-            years”)"
-                date="apr18"
-                readingTime={8}
-                tag="programming"
-                userName="ellen litman"
-              />
-              <PostItem
-                onBookmark={showSignInModal}
-                imageSrc="/jake.jpg"
-                content="In the last couple of weeks, Russia withdrew its forces from around
-          Kyiv and announced that its true goal is to “liberate” Donbas, which"
-                title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-            years”)"
-                date="apr18"
-                readingTime={8}
-                tag="programming"
-                userName="ellen litman"
-              />
+              {posts.map(post => (
+                <PostItem
+                  key={post._id}
+                  mainImage={urlFor(post.mainImage).url().split('?rect')[0]}
+                  authorImage={
+                    urlFor(post.author.image).url().split('?rect')[0]
+                  }
+                  description={post.description}
+                  id={post._id}
+                  date={formatDate(post._createdAt)}
+                  readingTime={5}
+                  tag="programming"
+                  author={post.author.name}
+                  onBookmark={showSignInModal}
+                  title={post.title}
+                />
+              ))}
             </ul>
           </div>
         </div>
@@ -126,4 +110,41 @@ const Authorized = () => {
   );
 };
 
-export default Authorized;
+export default UnAuthorizedHome;
+
+// <PostItem
+//                 onBookmark={showSignInModal}
+//                 imageSrc="/jake.jpg"
+//                 content="In the last couple of weeks, Russia withdrew its forces from around
+//           Kyiv and announced that its true goal is to “liberate” Donbas, which"
+//                 title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+//             years”)"
+//                 date="apr18"
+//                 readingTime={8}
+//                 tag="programming"
+//                 userName="ellen litman"
+//               />
+//               <PostItem
+//                 onBookmark={showSignInModal}
+//                 imageSrc="/jake.jpg"
+//                 content="In the last couple of weeks, Russia withdrew its forces from around
+//           Kyiv and announced that its true goal is to “liberate” Donbas, which"
+//                 title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+//             years”)"
+//                 date="apr18"
+//                 readingTime={8}
+//                 tag="programming"
+//                 userName="ellen litman"
+//               />
+//               <PostItem
+//                 onBookmark={showSignInModal}
+//                 imageSrc="/jake.jpg"
+//                 content="In the last couple of weeks, Russia withdrew its forces from around
+//           Kyiv and announced that its true goal is to “liberate” Donbas, which"
+//                 title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
+//             years”)"
+//                 date="apr18"
+//                 readingTime={8}
+//                 tag="programming"
+//                 userName="ellen litman"
+//               />

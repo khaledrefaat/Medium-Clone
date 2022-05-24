@@ -1,18 +1,20 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import { urlFor } from '../../lib/sanity';
+import { formatDate } from '../../lib/util';
+import { Post } from '../../typings';
 import AuthorizedPostItem from '../post/AuthorizedPostItem';
-import Divider from '../Ui/Divider';
 import DividerButton from '../Ui/DividerButton';
 import SectionDivider from '../Ui/SectionDivider';
 import UserItem from './UserItem';
 
-const UnAuthorizedHome = () => {
+const AuthorizedHome: React.FC<{ posts: Post[] }> = ({ posts }) => {
   const [showMoreMenu, setShowMoreMenu] = useState(true);
 
   const showMore = () => setShowMoreMenu(true);
   const hideMore = () => setShowMoreMenu(false);
 
-  console.log(showMoreMenu);
+  console.log(posts);
 
   return (
     <>
@@ -61,118 +63,28 @@ const UnAuthorizedHome = () => {
             </DividerButton>
             <DividerButton>recommended</DividerButton>
           </SectionDivider>
-
-          <div>
+          {posts.map(post => (
             <AuthorizedPostItem
+              key={post._id}
               showMore={showMore}
               showMoreMenu={showMoreMenu}
-              imageSrc="/jake.jpg"
-              userName="ellen litman"
-              category="Coding"
-              date="apr18"
-              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-                years”)"
-              content="In the last couple of weeks, Russia withdrew its forces from around
-              Kyiv and announced that its true goal is to “liberate” Donbas,
-              which"
-              tag="programming"
+              title={post.title}
+              author={post.author.name}
+              description={post.description}
+              category="programming"
+              tag="coding"
               readingTime={8}
+              date={formatDate(post._createdAt)}
+              id={post._id}
+              // split('?rect') because i found that this rect is making a problem with nextImage (i did'nt find this rect with all images)
+              authorImage={urlFor(post.author.image).url().split('?rect')[0]}
+              mainImage={urlFor(post.mainImage).url().split('?rect')[0]}
             />
-            <AuthorizedPostItem
-              showMore={showMore}
-              showMoreMenu={showMoreMenu}
-              imageSrc="/jake.jpg"
-              userName="ellen litman"
-              category="Coding"
-              date="apr18"
-              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-                years”)"
-              content="In the last couple of weeks, Russia withdrew its forces from around
-              Kyiv and announced that its true goal is to “liberate” Donbas,
-              which"
-              tag="programming"
-              readingTime={8}
-            />
-            <AuthorizedPostItem
-              showMore={showMore}
-              showMoreMenu={showMoreMenu}
-              imageSrc="/jake.jpg"
-              userName="ellen litman"
-              category="Coding"
-              date="apr18"
-              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-                years”)"
-              content="In the last couple of weeks, Russia withdrew its forces from around
-              Kyiv and announced that its true goal is to “liberate” Donbas,
-              which"
-              tag="programming"
-              readingTime={8}
-            />
-            <AuthorizedPostItem
-              showMore={showMore}
-              showMoreMenu={showMoreMenu}
-              imageSrc="/jake.jpg"
-              userName="ellen litman"
-              category="Coding"
-              date="apr18"
-              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-                years”)"
-              content="In the last couple of weeks, Russia withdrew its forces from around
-              Kyiv and announced that its true goal is to “liberate” Donbas,
-              which"
-              tag="programming"
-              readingTime={8}
-            />
-            <AuthorizedPostItem
-              showMore={showMore}
-              showMoreMenu={showMoreMenu}
-              imageSrc="/jake.jpg"
-              userName="ellen litman"
-              category="Coding"
-              date="apr18"
-              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-                years”)"
-              content="In the last couple of weeks, Russia withdrew its forces from around
-              Kyiv and announced that its true goal is to “liberate” Donbas,
-              which"
-              tag="programming"
-              readingTime={8}
-            />
-            <AuthorizedPostItem
-              showMore={showMore}
-              showMoreMenu={showMoreMenu}
-              imageSrc="/jake.jpg"
-              userName="ellen litman"
-              category="Coding"
-              date="apr18"
-              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-                years”)"
-              content="In the last couple of weeks, Russia withdrew its forces from around
-              Kyiv and announced that its true goal is to “liberate” Donbas,
-              which"
-              tag="programming"
-              readingTime={8}
-            />
-            <AuthorizedPostItem
-              showMore={showMore}
-              showMoreMenu={showMoreMenu}
-              imageSrc="/jake.jpg"
-              userName="ellen litman"
-              category="Coding"
-              date="apr18"
-              title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-                years”)"
-              content="In the last couple of weeks, Russia withdrew its forces from around
-              Kyiv and announced that its true goal is to “liberate” Donbas,
-              which"
-              tag="programming"
-              readingTime={8}
-            />
-          </div>
+          ))}
         </div>
       </section>
     </>
   );
 };
 
-export default UnAuthorizedHome;
+export default AuthorizedHome;

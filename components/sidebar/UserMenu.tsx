@@ -40,7 +40,7 @@ const UserMenu = () => {
         <li className="flex justify-start">
           <div className="mr-3">
             <Image
-              loader={() => session?.user?.image as string}
+              unoptimized
               src={session?.user?.image as string}
               height="45"
               width="45"

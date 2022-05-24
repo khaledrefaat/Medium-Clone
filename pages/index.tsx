@@ -20,7 +20,11 @@ const Home: NextPage<HomeProps> = ({ isLoggedIn, posts }) => {
         <meta charSet="utf-8" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      {isLoggedIn ? <AuthorizedHome /> : <UnAuthorizedHome />}
+      {isLoggedIn ? (
+        <AuthorizedHome posts={posts} />
+      ) : (
+        <UnAuthorizedHome posts={posts} />
+      )}
     </>
   );
 };
@@ -37,7 +41,8 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
    body,
    mainImage,
    slug,
-   categories
+   categories,
+   _createdAt
    }`;
 
   const posts: Post = await sanityClient.fetch(query);

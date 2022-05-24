@@ -1,5 +1,7 @@
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { imageLoader } from '../../lib/util';
 import Divider from '../Ui/Divider';
 import MobileMenuItem from './MobileMenuItem';
 import SideBarItem from './SideBarItem';
@@ -24,7 +26,11 @@ const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
           isMenuVisible ? 'mb-10' : 'p-2'
         }`}
       >
-        <Image src="/medium.png" height="50" width="50" />
+        <Link href="/">
+          <a>
+            <Image src="/medium.png" height="50" width="50" />
+          </a>
+        </Link>
         <button className="text-white bg-black ml-auto text-sm font-normal px-3 py-2  sm:text-base sm:font-medium sm:px-4 h-fit rounded-3xl shadow-sm">
           Get unlimited access
         </button>
@@ -41,7 +47,7 @@ const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
           <div className="flex">
             <div className="mr-3">
               <Image
-                loader={() => session?.user?.image as string}
+                unoptimized
                 src={session?.user?.image as string}
                 height="45"
                 width="45"
@@ -49,8 +55,8 @@ const MobileUserMenu: React.FC<{ isMenuVisible: boolean }> = ({
               />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Jake Rene</h4>
-              <p className="text-sm text-gray-600">@jakerene8</p>
+              <h4 className="font-medium mb-1">{session?.user?.name}</h4>
+              <p className="text-sm text-gray-600">@{session?.user?.email}</p>
             </div>
           </div>
           <Divider className="my-5 border-b" />
