@@ -14,8 +14,6 @@ const AuthorizedHome: React.FC<{ posts: Post[] }> = ({ posts }) => {
   const showMore = () => setShowMoreMenu(true);
   const hideMore = () => setShowMoreMenu(false);
 
-  console.log(posts);
-
   return (
     <>
       <section onClick={hideMore}>

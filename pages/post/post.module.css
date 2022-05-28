@@ -1,0 +1,11 @@
+.image {
+    width: 100%;
+}
+
+.image span {
+    width: 100% !important;
+}
+
+.image img {
+    width: 100%;
+}

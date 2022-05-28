@@ -13,7 +13,7 @@ interface AuthModalProps {
 
 const AuthModal: React.FC<AuthModalProps> = ({ signIn, hideModal }) => {
   return (
-    <Modal hideModal={hideModal}>
+    <Modal hideModal={hideModal} className="bg-white/90">
       <div
         className="h-full bg-white  shadow-2xl w-4/5 sm:w-2/3 md:w-1/2 xl:w-1/3 px-10 py-16 flex flex-col justify-between items-center relative"
         onClick={e => e.stopPropagation()}

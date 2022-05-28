@@ -1,10 +1,13 @@
-import Image, { ImageLoaderProps } from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import { MouseEvent, useEffect } from 'react';
 import { useState } from 'react';
 import { imageLoader } from '../../lib/util';
 import Divider from '../Ui/Divider';
-import MoreItem from './MoreItem';
+import UserImage from '../Ui/UserImage';
+import MoreItem from '../Ui/MoreItem';
+import AddBookmark from '../icons/add-bookmark.svg';
+import More from '../icons/more.svg';
 
 interface AuthorizedPostItemProps {
   isLast?: boolean;
@@ -45,13 +48,7 @@ const AuthorizedPostItem: React.FC<AuthorizedPostItemProps> = props => {
       <li className="my-10 flex items-center mx-1 lg:mx-0">
         <div>
           <div className="flex items-center mb-3">
-            <Image
-              loader={imageLoader}
-              src={props.authorImage}
-              height={25}
-              width={25}
-              className="rounded-full"
-            />
+            <UserImage src={props.authorImage} loader />
             <p className="text-xs sm:text-base ml-3">{props.author}</p>
             <div className="text-xs text-gray-700 ml-0.5">in</div>
             <Link href="/tag/coding">
@@ -82,23 +79,14 @@ const AuthorizedPostItem: React.FC<AuthorizedPostItemProps> = props => {
             </div>
             <div className="ml-auto mr-0 sm:mr-5 flex mt-3">
               <div className="cursor-pointer">
-                <Image
-                  src="/icons/add-bookmark.svg"
-                  height={20}
-                  width={20}
-                  layout="fixed"
-                />
+                <AddBookmark className="w-5 h-5 fill-slate-500 hover:fill-slate-800" />
               </div>
               <div
                 className="cursor-pointer ml-2 relative z-20"
                 onClick={toggleMoreMenu}
               >
-                <Image
-                  src="/icons/more.svg"
-                  height={17}
-                  width={17}
-                  layout="fixed"
-                />
+                <More className="w-5 h-5 fill-slate-500 hover:fill-slate-800" />
+
                 {showMore && <MoreItem isLast={props.isLast} />}
               </div>
             </div>

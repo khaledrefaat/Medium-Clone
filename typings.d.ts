@@ -19,6 +19,7 @@ interface Author {
     };
   };
   name: string;
+  _id: string;
 }
 
 interface Category {
@@ -58,7 +59,7 @@ export interface Post {
   _id: string;
   author: Author;
   categories: Category[];
-  body: Body;
+  body: Body[];
   description: string;
   mainImage: MainImage;
   slug: { _type: string; current: string };

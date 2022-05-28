@@ -3,12 +3,15 @@ import { ReactNode, useState } from 'react';
 interface ModalProps {
   hideModal: () => void;
   children: ReactNode;
+  className?: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ hideModal, children }) => {
+const Modal: React.FC<ModalProps> = ({ hideModal, children, className }) => {
   return (
     <div
-      className="fixed inset-0 bg-white/90 z-20 flex justify-center items-center py-8"
+      className={` ${
+        className ? className : ''
+      } fixed inset-0 z-20 flex justify-center items-center py-8`}
       onClick={hideModal}
     >
       {children}

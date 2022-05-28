@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Divider from '../Ui/Divider';
+import Divider from './Divider';
 
 const MoreItem: React.FC<{ isLast?: boolean }> = ({ isLast }) => {
   return (

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { MouseEvent, Ref, useEffect, useState } from 'react';
 import Divider from '../Ui/Divider';
+import UserImage from '../Ui/UserImage';
 import MobileUserMenu from './MobileUserMenu';
 import SideBarItem from './SideBarItem';
 import UserMenu from './UserMenu';
@@ -11,17 +12,16 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
   hideMenuRef,
 }) => {
   const { data: session, status } = useSession();
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  useEffect(() => {
+    hideMenuRef.current = hideMenu;
+  }, [hideMenuRef]);
 
   if (status === 'loading') {
     return null;
   }
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const hideMenu = () => setIsMenuVisible(false);
-
-  useEffect(() => {
-    hideMenuRef.current = hideMenu;
-  }, []);
 
   const toggleMenu = (e: MouseEvent) => {
     setIsMenuVisible(isMenuVisible => !isMenuVisible);
@@ -52,11 +52,11 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
               <SideBarItem
                 href="/"
                 src="/icons/home-outline.svg"
-                className="mr-5 sm:mr-10 lg:mr-0"
+                className=" lg:mb-5"
               />
               <SideBarItem
-                src="/icons/notification-outline.svg"
-                className="hidden lg:block lg:mx-0 lg:my-5 mr-5 sm:mr-10 lg:mr-0"
+                src="/icons/notification.svg"
+                className="hidden lg:block lg:mx-0 lg:my-5 "
               />
               <SideBarItem
                 href="/search"
@@ -65,12 +65,12 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
               />
               <SideBarItem
                 src="/icons/stories.svg"
-                className="hidden lg:block lg:mx-0 lg:my-5 mr-5 sm:mr-10 lg:mr-0"
+                className="hidden lg:block lg:mx-0 lg:my-5 "
               />
               <SideBarItem
                 href="/me/lists"
                 src="/icons/bookmark-outline.svg"
-                className="lg:mx-0 lg:mt-5 mr-5 sm:mr-10 lg:mr-0"
+                className="lg:mx-0 lg:mt-5 "
               />
               <Divider className="hidden lg:block my-8 border-b-2" />
               <SideBarItem
@@ -81,12 +81,10 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
                 className="lg:hidden lg:mx-auto cursor-pointer relative"
                 onClick={toggleMenu}
               >
-                <Image
-                  unoptimized
+                <UserImage
                   src={session?.user?.image as string}
-                  height="40"
-                  width="40"
-                  className="rounded-full"
+                  height={40}
+                  width={40}
                 />
               </li>
             </ul>
@@ -95,12 +93,10 @@ const SideBar: React.FC<{ hideMenuRef: { current: Ref<() => void> } }> = ({
             className="hidden lg:block lg:mx-auto cursor-pointer relative"
             onClick={toggleMenu}
           >
-            <Image
-              unoptimized
+            <UserImage
               src={session?.user?.image as string}
-              height="40"
-              width="40"
-              className="rounded-full"
+              height={40}
+              width={40}
             />
             {isMenuVisible && <UserMenu />}
           </div>

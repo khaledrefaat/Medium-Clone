@@ -2,7 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { imageLoader } from '../../lib/util';
+import UserImage from '../Ui/UserImage';
 import classes from './PostItem.module.css';
+import AddBookmark from '../icons/add-bookmark.svg';
 
 interface PostItemProps {
   onBookmark: () => void;
@@ -33,13 +35,7 @@ const PostItem: React.FC<PostItemProps> = ({
     <li className="my-10 flex items-center">
       <div>
         <div className="flex items-center mb-3">
-          <Image
-            loader={imageLoader}
-            src={authorImage}
-            height={25}
-            width={25}
-            className="rounded-full"
-          />
+          <UserImage src={authorImage} loader />
           <span className="text-xs sm:text-base font-medium ml-3">
             {author}
           </span>
@@ -65,7 +61,7 @@ const PostItem: React.FC<PostItemProps> = ({
             </a>
           </Link>
           <span className="ml-auto cursor-pointer" onClick={onBookmark}>
-            <Image src="/icons/add-bookmark.svg" height={30} width={30} />
+            <AddBookmark className="w-7 h-7 fill-slate-500 hover:fill-slate-800" />
           </span>
         </div>
       </div>
