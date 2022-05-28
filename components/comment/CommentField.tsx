@@ -1,5 +1,6 @@
 import UserImage from '../Ui/UserImage';
 import { ReactNode, useState } from 'react';
+import CommentContainer from './CommentContainer';
 
 interface CommentFieldProps {
   img: string;
@@ -27,54 +28,56 @@ const CommentField: React.FC<CommentFieldProps> = ({
   const showWritingArea = () => setShowTextArea(true);
 
   return (
-    <div
-      className={`${
-        className ? className : ''
-      } mt-5 shadow-md p-3 rounded-md relative`}
-    >
-      {showTextArea && (
-        <div className="flex items-center">
-          <UserImage src={img} height={40} width={40} />
-          <p className="capitalize ml-2">{author}</p>
-        </div>
-      )}
-      <div className={`${showTextArea ? 'mt-5' : ''}`}>
-        {showTextArea ? (
-          <textarea
-            placeholder="What are your thoughts"
-            className="w-full outline-none mb-10 placeholder:text-sm"
-            value={term}
-            onChange={e => setTerm(e.target.value)}
-          />
-        ) : (
-          <input
-            placeholder="What are your thoughts"
-            className="w-full outline-none py-2 placeholder:text-sm"
-            onClick={showWritingArea}
-          />
+    <CommentContainer>
+      <div
+        className={`${
+          className ? className : ''
+        } mt-5 shadow-md p-3 rounded-md relative`}
+      >
+        {showTextArea && (
+          <div className="flex items-center">
+            <UserImage src={img} height={40} width={40} />
+            <p className="capitalize ml-2">{author}</p>
+          </div>
         )}
-      </div>
-      {showTextArea && (
-        <div className="flex justify-end">
-          <button
-            className="font-medium mr-3 text-sm"
-            onClick={hideWritingArea}
-          >
-            Cancel
-          </button>
-          <button
-            disabled={!showTextArea}
-            className={`font-medium text-sm bg-green-700 text-white rounded-full pb-1.5 pt-1 px-3 ${
-              term ? '' : 'opacity-50 cursor-not-allowed'
-            }`}
-            onClick={() => onSubmit(term)}
-          >
-            Respond
-          </button>
+        <div className={`${showTextArea ? 'mt-5' : ''}`}>
+          {showTextArea ? (
+            <textarea
+              placeholder="What are your thoughts"
+              className="w-full outline-none mb-10 placeholder:text-sm"
+              value={term}
+              onChange={e => setTerm(e.target.value)}
+            />
+          ) : (
+            <input
+              placeholder="What are your thoughts"
+              className="w-full outline-none py-2 placeholder:text-sm"
+              onClick={showWritingArea}
+            />
+          )}
         </div>
-      )}
-      {children}
-    </div>
+        {showTextArea && (
+          <div className="flex justify-end">
+            <button
+              className="font-medium mr-3 text-sm"
+              onClick={hideWritingArea}
+            >
+              Cancel
+            </button>
+            <button
+              disabled={!showTextArea}
+              className={`font-medium text-sm bg-green-700 text-white rounded-full pb-1.5 pt-1 px-3 ${
+                term ? '' : 'opacity-50 cursor-not-allowed'
+              }`}
+              onClick={() => onSubmit(term)}
+            >
+              Respond
+            </button>
+          </div>
+        )}
+        {children}
+      </div>
+    </CommentContainer>
   );
 };
 

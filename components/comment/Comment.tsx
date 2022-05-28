@@ -3,6 +3,7 @@ import Close from '../icons/close.svg';
 import CommentItem from './CommentItem';
 import CommentField from './CommentField';
 import { MouseEvent } from 'react';
+import CommentContainer from './CommentContainer';
 
 interface CommentProps {
   hideComment: () => void;
@@ -18,20 +19,24 @@ const Comment: React.FC<CommentProps> = ({ hideComment }) => {
     >
       <div
         onClick={e => e.stopPropagation()}
-        className="fixed bg-white h-5/6 overflow-y-scroll w-screen sm:h-screen sm:w-2/4 lg:w-1/3 xl:w-1/4 shadow-xl right-0 sm:top-0 bottom-0 px-5 cursor-auto"
+        className="fixed bg-white h-5/6 overflow-y-scroll w-screen sm:h-screen sm:w-2/4 lg:w-1/3 xl:w-1/4 shadow-xl right-0 sm:top-0 bottom-0 cursor-auto"
       >
-        <div className="flex justify-between w-full items-center mt-5">
-          <h2 className="capitalize font-semibold text-2xl">
-            responses <span className="text-xl">(2)</span>
-          </h2>
-          <Close className="cursor-pointer" onClick={hideComment} />
-        </div>
+        <CommentContainer>
+          <div className="flex justify-between w-full items-center mt-5">
+            <h2 className="capitalize font-semibold text-2xl">
+              responses <span className="text-xl">(2)</span>
+            </h2>
+            <Close className="cursor-pointer" onClick={hideComment} />
+          </div>
+        </CommentContainer>
         <CommentField
           onSubmit={handelCommentSubmit}
           img="/jake.jpg"
           author="Jake Thompson"
         />
-
+        {/* in case if there is no comments here is the text that you will render (it will be in the middle of the component) */}
+        {/* There are currently no responses for this story.
+        Be the first to respond */}
         <CommentItem
           author="Jake Thompson"
           img="/jake.jpg"
