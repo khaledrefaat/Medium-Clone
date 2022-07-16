@@ -65,12 +65,48 @@ const UnAuthorizedHome: React.FC<{ posts: Post[] }> = ({ posts }) => {
             </h3>
           </div>
           <ul className="grid pl-2 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 list-none">
-            <TrendingPost />
-            <TrendingPost />
-            <TrendingPost />
-            <TrendingPost />
-            <TrendingPost />
-            <TrendingPost />
+            <TrendingPost
+              index={1}
+              imageSrc="/jake.jpg"
+              authorName="Jake Thompson"
+              postTitle="How to choose the right backend?"
+              date="18 Apr"
+            />
+            <TrendingPost
+              index={2}
+              imageSrc="/jake.jpg"
+              authorName="Jake Thompson"
+              postTitle="How to choose the right backend?"
+              date="18 Apr"
+            />
+            <TrendingPost
+              index={3}
+              imageSrc="/jake.jpg"
+              authorName="Jake Thompson"
+              postTitle="How to choose the right backend?"
+              date="18 Apr"
+            />
+            <TrendingPost
+              index={4}
+              imageSrc="/jake.jpg"
+              authorName="Jake Thompson"
+              postTitle="How to choose the right backend?"
+              date="18 Apr"
+            />
+            <TrendingPost
+              index={5}
+              imageSrc="/jake.jpg"
+              authorName="Jake Thompson"
+              postTitle="How to choose the right backend?"
+              date="18 Apr"
+            />
+            <TrendingPost
+              index={6}
+              imageSrc="/jake.jpg"
+              authorName="Jake Thompson"
+              postTitle="How to choose the right backend?"
+              date="18 Apr"
+            />
           </ul>
         </div>
       </section>
@@ -111,40 +147,3 @@ const UnAuthorizedHome: React.FC<{ posts: Post[] }> = ({ posts }) => {
 };
 
 export default UnAuthorizedHome;
-
-// <PostItem
-//                 onBookmark={showSignInModal}
-//                 imageSrc="/jake.jpg"
-//                 content="In the last couple of weeks, Russia withdrew its forces from around
-//           Kyiv and announced that its true goal is to “liberate” Donbas, which"
-//                 title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-//             years”)"
-//                 date="apr18"
-//                 readingTime={8}
-//                 tag="programming"
-//                 userName="ellen litman"
-//               />
-//               <PostItem
-//                 onBookmark={showSignInModal}
-//                 imageSrc="/jake.jpg"
-//                 content="In the last couple of weeks, Russia withdrew its forces from around
-//           Kyiv and announced that its true goal is to “liberate” Donbas, which"
-//                 title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-//             years”)"
-//                 date="apr18"
-//                 readingTime={8}
-//                 tag="programming"
-//                 userName="ellen litman"
-//               />
-//               <PostItem
-//                 onBookmark={showSignInModal}
-//                 imageSrc="/jake.jpg"
-//                 content="In the last couple of weeks, Russia withdrew its forces from around
-//           Kyiv and announced that its true goal is to “liberate” Donbas, which"
-//                 title="Telegram Chronicles: Donbas and its War (a.k.a. “the last 8
-//             years”)"
-//                 date="apr18"
-//                 readingTime={8}
-//                 tag="programming"
-//                 userName="ellen litman"
-//               />

@@ -52,6 +52,8 @@ const Post: NextPage<PostProps> = ({ post }) => {
     ),
   };
 
+  console.log(post);
+
   return (
     <>
       <Head>
@@ -142,16 +144,12 @@ const Post: NextPage<PostProps> = ({ post }) => {
           </article>
           <div className="flex justify-between w-full mt-10 items-center">
             <div className="flex items-center">
-              <div className="flex items-center mr-8 cursor-pointer">
-                <Like className="w-5 h-5 fill-slate-500 hover:fill-slate-800" />
-                <span className="ml-1">295</span>
-              </div>
               <div
                 className="flex items-center cursor-pointer"
                 onClick={showComment}
               >
                 <CommentIcon className="w-5 h-5 fill-slate-500 hover:fill-slate-800" />
-                <span className="ml-1">3</span>
+                <span className="ml-1">{post.comment.length}</span>
               </div>
             </div>
 
@@ -166,7 +164,13 @@ const Post: NextPage<PostProps> = ({ post }) => {
           </div>
         </div>
       </section>
-      {isCommentVisible && <Comment hideComment={hideComment} />}
+      {isCommentVisible && (
+        <Comment
+          comments={post.comment}
+          postId={post._id}
+          hideComment={hideComment}
+        />
+      )}
     </>
   );
 };
@@ -198,7 +202,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     slug,
     categories,
     _createdAt,
-    _id
+    _id,
+    'comment': * [
+      _type == 'comment' && post._ref == ^._id && approved == true
+    ] {
+      comment,
+      _id,
+      imageSrc,
+      userId,
+      _updatedAt,
+      name
+    }
    }`;
 
   const post: Post = await sanityClient.fetch(query);

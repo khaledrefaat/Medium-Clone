@@ -1,4 +1,4 @@
-import type { GetServerSideProps, GetStaticProps, NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
 import UnAuthorizedHome from '../components/HomePage/UnAuthorizedHome';
 import AuthorizedHome from '../components/HomePage/AuthorizedHome';
@@ -32,6 +32,7 @@ export default Home;
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getSession(ctx);
+  let posts;
 
   const query = `*[_type == 'post'] {
     _id,
@@ -45,12 +46,16 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
    _createdAt
    }`;
 
-  const posts: Post = await sanityClient.fetch(query);
+  try {
+    posts = await sanityClient.fetch(query);
+  } catch (err) {
+    console.log(err);
+  }
 
   return {
     props: {
       isLoggedIn: !!session,
-      posts: posts,
+      posts,
     },
   };
 };

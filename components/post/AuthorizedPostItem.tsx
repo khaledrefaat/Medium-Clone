@@ -99,6 +99,7 @@ const AuthorizedPostItem: React.FC<AuthorizedPostItemProps> = props => {
             height="130"
             width="130"
             layout="fixed"
+            alt={props.title}
           />
         </div>
       </li>

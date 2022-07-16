@@ -6,8 +6,6 @@ interface CommentFieldProps {
   img: string;
   author: string;
   onSubmit: (comment: string) => void;
-  hideComment?: () => void;
-  className?: string;
   children?: ReactNode;
 }
 
@@ -15,25 +13,23 @@ const CommentField: React.FC<CommentFieldProps> = ({
   img,
   author,
   onSubmit,
-  hideComment,
-  className,
   children,
 }) => {
-  const [showTextArea, setShowTextArea] = useState(hideComment ? true : false); // so it would always show the comment area when opening it from CommentItem
+  const [showTextArea, setShowTextArea] = useState(false); // so it would always show the comment area when opening it from CommentItem
   const [term, setTerm] = useState('');
 
-  const hideWritingArea = () =>
-    hideComment ? hideComment() : setShowTextArea(false);
+  const hideWritingArea = () => setShowTextArea(false);
 
   const showWritingArea = () => setShowTextArea(true);
 
+  const handelCommentSubmit = () => {
+    onSubmit(term);
+    setTerm('');
+  };
+
   return (
     <CommentContainer>
-      <div
-        className={`${
-          className ? className : ''
-        } mt-5 shadow-md p-3 rounded-md relative`}
-      >
+      <div className="mt-5 shadow-md p-3 rounded-md relative">
         {showTextArea && (
           <div className="flex items-center">
             <UserImage src={img} height={40} width={40} />
@@ -69,7 +65,7 @@ const CommentField: React.FC<CommentFieldProps> = ({
               className={`font-medium text-sm bg-green-700 text-white rounded-full pb-1.5 pt-1 px-3 ${
                 term ? '' : 'opacity-50 cursor-not-allowed'
               }`}
-              onClick={() => onSubmit(term)}
+              onClick={handelCommentSubmit}
             >
               Respond
             </button>

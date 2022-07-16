@@ -1,16 +1,33 @@
 import { Session } from 'next-auth';
 
+export interface User {
+  name: string;
+  email: string;
+  image: string;
+  _id: string;
+  socialId: string;
+}
+
 export interface Session extends Session {
-  user: {
-    name: string;
-    email: string;
-    image: string;
-    id: string;
-  };
+  user: User;
   expires: string;
 }
 
-interface Author {
+export interface Topic {
+  _id: string;
+  title: string;
+}
+
+export interface Comment {
+  comment: string;
+  userId: string;
+  imageSrc: string;
+  _updatedAt: string;
+  _id: string;
+  name: string;
+}
+
+export interface Author {
   image: {
     _type: string;
     asset: {
@@ -20,6 +37,7 @@ interface Author {
   };
   name: string;
   _id: string;
+  bio: { children: { text: string }[] }[];
 }
 
 interface Category {
@@ -65,4 +83,12 @@ export interface Post {
   slug: { _type: string; current: string };
   title: string;
   _createdAt: string;
+  comment: Comment[];
+}
+
+export interface Following {
+  _id: string;
+  image: { asset: { _ref: string } };
+  name: string;
+  bio: { children: { text: string }[] }[];
 }

@@ -2,15 +2,43 @@ import Modal from '../modal/Modal';
 import Close from '../icons/close.svg';
 import CommentItem from './CommentItem';
 import CommentField from './CommentField';
-import { MouseEvent } from 'react';
 import CommentContainer from './CommentContainer';
+import { useSession } from 'next-auth/react';
+import { Comment, Session } from '../../typings';
 
 interface CommentProps {
   hideComment: () => void;
+  postId: string;
+  comments: Comment[];
 }
 
-const Comment: React.FC<CommentProps> = ({ hideComment }) => {
-  const handelCommentSubmit = (comment: string) => console.log(comment);
+const Comment: React.FC<CommentProps> = ({ hideComment, postId, comments }) => {
+  const { data: session } = useSession();
+
+  const handelCommentSubmit = async (comment: string) => {
+    // i have edited the user type definition because i could'nt do it the normal way <Session> or as Session
+    const commentData = {
+      userId: session?.user?._id,
+      postId,
+      name: session?.user?.name,
+      imageSrc: session?.user?.image,
+      comment,
+    };
+    try {
+      const res = await fetch('/api/new-comment', {
+        method: 'POST',
+        body: JSON.stringify(commentData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Modal
@@ -31,27 +59,21 @@ const Comment: React.FC<CommentProps> = ({ hideComment }) => {
         </CommentContainer>
         <CommentField
           onSubmit={handelCommentSubmit}
-          img="/jake.jpg"
-          author="Jake Thompson"
+          img={session?.user?.image as string}
+          author={session?.user?.name as string}
         />
-        {/* in case if there is no comments here is the text that you will render (it will be in the middle of the component) */}
-        {/* There are currently no responses for this story.
-        Be the first to respond */}
-        <CommentItem
-          author="Jake Thompson"
-          img="/jake.jpg"
-          date="2022-04-20T00:19:26Z"
-          description="Ooooh feather moving feather!. Oooo! dangly balls! jump swat swing flies so sweetly to the floor crash move on wash belly nap trip on catnip purr when being pet small kitty warm kitty little balls of fur stare out the window stretch out on bed. Get video posted to internet for chasing red dot if it smells like fish eat as much as you wish yet haha you hold me hooman i scratch climb a tree, wait for a fireman jump to fireman then scratch his face purr cough furball who's the baby. Ignore the human until she needs to get up, then climb on her lap and sprawl wake up human for food at 4am yet refuse to come home when humans are going to bed; stay out all night then yowl like i am dying at 4am human is in bath tub, emergency! drowning! meooowww!. Really likes hummus fall asleep on the washing machine but cat sit like bread pee in the shoe for i like to spend my days sleeping and eating fishes that my human fished for me we live on a luxurious yacht, sailing proudly under the sun, i like to walk on the deck, watching the horizon, dreaming of a good bowl of milk scoot butt on the rug poop in a handbag look delicious and drink the soapy mopping up water then puke giant foamy fur-balls. Check cat door for ambush 10 times before coming in. Cat is love, cat is life mew mew hey! you there, with the hands yet i heard this rumor where the humans are our owners, pfft, what do they know?! yet kick up litter bathe private parts with"
-          likes={2}
-          replies={3}
-        />
-        <CommentItem
-          author="Jake Thompson"
-          img="/jake.jpg"
-          date="2022-04-20T00:19:26Z"
-          description="Ooooh feather moving feather!. Oooo! dangly balls! jump swat swing flies so sweetly to the floor crash move on wash belly nap trip on catnip purr when being pet small kitty warm kitty little balls of fur stare out the window stretch out on bed. Get video posted to internet for chasing red dot if it smells like fish eat as much as you wish yet haha you hold me hooman i scratch climb a tree, wait for a fireman jump to fireman then scratch his face purr cough furball who's the baby. Ignore the human until she needs to get up, then climb on her lap and sprawl wake up human for food at 4am yet refuse to come home when humans are going to bed; stay out all night then yowl like i am dying at 4am human is in bath tub, emergency! drowning! meooowww!. Really likes hummus fall asleep on the washing machine but cat sit like bread pee in the shoe for i like to spend my days sleeping and eating fishes that my human fished for me we live on a luxurious yacht, sailing proudly under the sun, i like to walk on the deck, watching the horizon, dreaming of a good bowl of milk scoot butt on the rug poop in a handbag look delicious and drink the soapy mopping up water then puke giant foamy fur-balls. Check cat door for ambush 10 times before coming in. Cat is love, cat is life mew mew hey! you there, with the hands yet i heard this rumor where the humans are our owners, pfft, what do they know?! yet kick up litter bathe private parts with"
-          likes={2}
-        />
+
+        {comments.map(
+          ({ _id, comment, imageSrc, _updatedAt, userId, name }) => (
+            <CommentItem
+              key={_id}
+              author={name}
+              img={imageSrc}
+              date={_updatedAt}
+              comment={comment}
+            />
+          )
+        )}
       </div>
     </Modal>
   );

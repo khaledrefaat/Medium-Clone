@@ -22,3 +22,9 @@ export const getDay = (date: string) => new Date(date).getDate();
 
 export const imageLoader = ({ src, width, quality }: ImageLoaderProps) =>
   `${src}/?w=${width}&q${quality || 100}`;
+
+export const calculateDaysFromToday = (date: string) => {
+  const DIFFERENCE_IN_DAYS = 1000 * 3600 * 24;
+  const dateDifference = new Date().getTime() - new Date(date).getTime();
+  return Math.floor(dateDifference / DIFFERENCE_IN_DAYS);
+};

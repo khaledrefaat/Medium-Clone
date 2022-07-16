@@ -4,6 +4,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
 import connectToDb from '../../../lib/connectToDb';
 import User from '../../../models/user';
+import { Session, User as UserType } from '../../../typings';
 
 export default NextAuth({
   session: {
@@ -30,26 +31,42 @@ export default NextAuth({
     async jwt({ token, user }) {
       if (user) {
         await connectToDb();
-        const existingUser = await User.findOne({ userId: user.id });
-        if (existingUser) {
-          return token;
-        }
-
+        const existingUser: UserType | null = await User.findOne({
+          socialId: user.id,
+        });
+        if (existingUser) return token;
         const newUser = new User({
           username: user.name,
           email: user.email,
           image: user.image,
-          userId: user.id,
+          // to check if this account was registered before or not
+          /* note that the check is based on the social id not the email so if the user have registered himself with same email in facebook and google and github can still register here with 3 different accounts */
+          socialId: user.id,
+          following: [],
         });
 
         try {
           await newUser.save();
+          console.log(user);
+          console.log(newUser);
         } catch (err) {
           throw new Error('Something went wrong, please try again later.');
         }
-        return token;
       }
       return token;
+    },
+    async session({ session, user, token }) {
+      let existingUser;
+      try {
+        existingUser = await User.findOne({ email: session?.user?.email });
+        return {
+          expires: session.expires,
+          user: { ...session.user, _id: existingUser._id },
+        };
+      } catch (err) {
+        console.log(err);
+      }
+      return session;
     },
   },
 });

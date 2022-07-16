@@ -4,7 +4,8 @@ const userSchema = new Schema({
   username: String,
   email: String,
   image: String,
-  userId: String,
+  socialId: String,
+  following: [String],
 });
 
 export default models.User || model('User', userSchema);

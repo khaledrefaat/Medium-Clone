@@ -20,7 +20,7 @@ const TagsMenu = () => {
   return (
     <ul
       className={`list-none flex justify-center flex-wrap lg:ml-3 ${
-        isScrolling ? 'lg:w-1/3 lg:fixed lg:z-10 top-28' : ''
+        isScrolling ? 'lg:w-1/4 lg:fixed lg:z-10 top-28' : ''
       }`}
     >
       <h3 className="w-full text-center font-semibold uppercase">

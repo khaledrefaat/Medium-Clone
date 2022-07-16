@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { imageLoader } from '../../lib/util';
 
 interface UserItemProps {
   user: string;
@@ -12,7 +13,14 @@ const UserItem: React.FC<UserItemProps> = ({ user, description, imageSrc }) => {
   return (
     <li className="flex items-center mt-3 max-w-xs">
       <div className="mr-3">
-        <Image src={imageSrc} height="75" width="75" className="rounded-full" />
+        <Image
+          loader={imageLoader}
+          src={imageSrc}
+          alt="author"
+          height="75"
+          width="75"
+          className="rounded-full"
+        />
       </div>
       <div>
         <h2 className="font-bold">{user}</h2>
